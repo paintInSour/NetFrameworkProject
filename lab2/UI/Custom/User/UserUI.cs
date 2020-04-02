@@ -12,29 +12,53 @@ using lab2.Engine.IService;
 using lab2.Engine.Model;
 using lab2.UI.Custom.IControl;
 using lab2.Engine.Model;
+using lab2.Engine.Repository;
 
 namespace lab2.UI.Custom.User
 {
     public partial class UserUI : UserControl ,IShowItem
     {
-        private ICarSharingService userCarSharingService;
         private Car chosenItem;
         private CarSharingService carSharingService;
-        private AuthorizedUser user;
-        public UserUI(CarSharingService carSharing)
+        private IAuthorizedUser user;
+        public UserUI(CarSharingService carSharing, IAuthorizedUser user)
         {
             InitializeComponent();
             carSharingService = carSharing;
+            reloadList();
+            User = user;
+
+            MaxListWidth();
+            setOrderUI(user);
+        }
+        public void reloadList()
+        {
+            ItemList.Controls.Clear();
             List<ListItem> list = new List<ListItem>();
             carSharingService.Cars.ToList().ForEach(item => list.Add(new ListItem(this, item.Value)));
             ItemList.Controls.AddRange(list.ToArray());
-            
+        }
+        public void setOrderUI(IAuthorizedUser user)
+        {
+            if (user.GetOrder() == null)
+            {
+                noOrderCard.Visible = true;
+                orderCard.Visible = false;
+            }
+            else
+            {
+                noOrderCard.Visible = false;
+                orderCard.Visible = true;
+                orderImage.Image = user.GetOrder().Image;
+                orderBrandLabel.Text = user.GetOrder().Brand;
+                orderModelLabel.Text = user.GetOrder().Model;
+                orderCommentLabel.Text = user.GetOrder().Comment;
+            }
         }
 
         public Car ChosenItem { get => chosenItem; set => chosenItem = value; }
-        public ICarSharingService UserCarSharingService { get => userCarSharingService; set => userCarSharingService = value; }
         public CarSharingService CarSharingService { get => carSharingService; set => carSharingService = value; }
-        internal AuthorizedUser User { get => user; set => user = value; }
+        public IAuthorizedUser User { get => user; set => user = value; }
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
@@ -57,8 +81,13 @@ namespace lab2.UI.Custom.User
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
-            carSharingService.AddOrder(new Order(Guid.NewGuid().ToString(),chosenItem,user));
+
+            carSharingService.AddOrder(new Order(Guid.NewGuid().ToString(),chosenItem,User.GetId(),User.GetId()));
+            carSharingService.DeleteCar(chosenItem.Id);
+            OrderRepository.writeFile(carSharingService.Orders);
+            CarRepository.writeFile(carSharingService.Cars);
             MaxListWidth();
+            reloadList();
         }
 
         public void MaxListWidth()
@@ -71,6 +100,23 @@ namespace lab2.UI.Custom.User
         {
             carList.Width = 700;
             ItemView.Visible = true;
+        }
+
+        private void materialMultiLineTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void orderCard_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void orderReturn_Click(object sender, EventArgs e)
+        {
+            carSharingService.AddCar(user.GetOrder());
+            user.SetOrder(null);
+            setOrderUI(user);
         }
     }
 }

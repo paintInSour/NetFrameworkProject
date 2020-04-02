@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 namespace lab2.Engine.Model
 {
     [Serializable]
-   public class Car
+    public class Car
     {
-            public string Id { get; set; }
-            public Image Image { get; set; }
-            public string Brand { get; set; }
-            public string Model { get; set; }
-            public string Comment { get; set; }
-            public string Price { get; set; }
+        public string Id { get; set; }
+        public Image Image { get; set; }
+        public string Brand { get; set; }
+        public string Model { get; set; }
+        public string Comment { get; set; }
+        public string Price { get; set; }
 
         public Car()
         {
@@ -31,13 +31,5 @@ namespace lab2.Engine.Model
             Price = price;
         }
 
-        public void edit(Car item)
-            {
-                this.Brand = item.Brand;
-                this.Image = item.Image;
-                this.Model = item.Model;
-                this.Comment = item.Comment;
-            }
-        }
-    
+    }
 }

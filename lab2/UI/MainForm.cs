@@ -19,41 +19,33 @@ namespace lab2
 {
     public partial class Form1 : MaterialForm
     {
-        public Form1(AuthorizedUser user , CarSharingService carSharingService)
+        private CarSharingService carService;
+        public Form1(IAuthorizedUser user , CarSharingService carSharingService)
         {
-            //var materialSkinManager = MaterialSkinManager.Instance;
-            //materialSkinManager.AddFormToManage(this);
-            //materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-            //materialSkinManager.ColorScheme = new ColorScheme(Primary.Grey800, Primary.Grey900, Primary.Indigo900, Accent.Blue700, TextShade.WHITE);
+            carService = carSharingService;
             if (user.IsAdmin())
-                generateAdminForm(carSharingService);
+                generateAdminForm(carSharingService ,user);
             else
-                generateUserForm(carSharingService);
+                generateUserForm(carSharingService ,user);
 
             InitializeComponent();
         }
-        public void generateUserForm(CarSharingService carSharingService)
+        public void generateUserForm(CarSharingService carSharingService,IAuthorizedUser user)
         {
-            UserUI ui = new UserUI(carSharingService);
-            ui.ChosenItem = null;
+            UserUI ui = new UserUI(carSharingService,user);
             ui.Location = new System.Drawing.Point(0, 64);
             ui.Name = "adminUI1";
             ui.Size = new System.Drawing.Size(1100, 662);
             ui.TabIndex = 1;
-            ui.User = null;
-            ui.UserCarSharingService = null;
             Controls.Add(ui);
         }
-        public void generateAdminForm(CarSharingService carSharingService)
+        public void generateAdminForm(CarSharingService carSharingService,IAuthorizedUser user)
         {
-            AdminUI ui = new AdminUI(carSharingService);
-            ui.ChosenItem = null;
+            AdminUI ui = new AdminUI(carSharingService,user);
             ui.Location = new System.Drawing.Point(0, 64);
             ui.Name = "adminUI1";
             ui.Size = new System.Drawing.Size(1100, 662);
             ui.TabIndex = 1;
-            ui.User = null;
-            ui.UserCarSharingService = null;
             Controls.Add(ui);
         }
     
@@ -68,7 +60,14 @@ namespace lab2
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-           
+            UserRepository.writeFile(carService.Users);
+            CarRepository.writeFile(carService.Cars);
+            OrderRepository.writeFile(carService.Orders);
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

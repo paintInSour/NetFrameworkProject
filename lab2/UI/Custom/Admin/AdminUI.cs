@@ -20,22 +20,30 @@ namespace lab2.UI.Custom.Admin
         private ICarSharingService userCarSharingService;
         private Car chosenItem;
         private CarSharingService carSharingService;
-        private AuthorizedUser user;
+        private IAuthorizedUser user;
         public AdminUI()
         {
             InitializeComponent();
           
         }
-        public AdminUI(CarSharingService carSharing)
+        public AdminUI(CarSharingService carSharing , IAuthorizedUser user)
         {
             InitializeComponent();
             carSharingService = carSharing;
+            List<ListItem> list = new List<ListItem>();
+            carSharingService.Cars.ToList().ForEach(item => list.Add(new ListItem(this, item.Value)));
+            ItemList.Controls.AddRange(list.ToArray());
+            User = user;
+
+            List<OrderItem> orderItems = new List<OrderItem>();
+            CarSharingService.Orders.ToList().ForEach(item => orderItems.Add(new OrderItem(carSharingService, item.Value,orderList)));
+            orderList.Controls.AddRange(orderItems.ToArray());
         }
 
         public ICarSharingService UserCarSharingService { get => userCarSharingService; set => userCarSharingService = value; }
         public Car ChosenItem { get => chosenItem; set => chosenItem = value; }
         public CarSharingService CarSharingService { get => carSharingService; set => carSharingService = value; }
-        public AuthorizedUser User { get => user; set => user = value; }
+        public IAuthorizedUser User { get => user; set => user = value; }
 
         public void MaxListWidth()
         {

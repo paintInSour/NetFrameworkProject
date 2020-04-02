@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace lab2.Engine.Model
 {
-    public abstract class AuthorizedUser
+    public interface IAuthorizedUser
     {
-        public abstract bool IsAdmin();
+        bool IsAdmin();
+        Car GetOrder();
+        void SetOrder(Car order);
+        string GetId();
+        string GetLogin();
+        string GetPassword();
     }
 }

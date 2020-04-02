@@ -1,8 +1,6 @@
-﻿using lab2.Engine.Service;
-
-namespace lab2
+﻿namespace lab2.UI
 {
-    partial class Form1
+    partial class OrderWizard
     {
         /// <summary>
         /// Required designer variable.
@@ -32,15 +30,13 @@ namespace lab2
         {
             this.SuspendLayout();
             // 
-            // Form1
+            // OrderWizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1100, 729);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.ClientSize = new System.Drawing.Size(491, 568);
+            this.Name = "OrderWizard";
+            this.Text = "OrderWizard";
             this.ResumeLayout(false);
 
         }
@@ -48,4 +44,3 @@ namespace lab2
         #endregion
     }
 }
-

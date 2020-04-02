@@ -9,11 +9,12 @@ namespace lab2.Engine.Service
 {
     public class CarSharingService
     {
-        private Dictionary<string, Car> cars = new Dictionary<string, Car>();
-        private Dictionary<string, Order> orders = new Dictionary<string, Order>();
-
+        private static Dictionary<string, Car> cars = new Dictionary<string, Car>();
+        private static Dictionary<string, Order> orders = new Dictionary<string, Order>();
+        private static Dictionary<string, IAuthorizedUser> users = new Dictionary<string, IAuthorizedUser>();
         public Dictionary<string, Car> Cars { get => cars; set => cars = value; }
         public Dictionary<string, Order> Orders { get => orders; set => orders = value; }
+        public Dictionary<string, IAuthorizedUser> Users { get => users; set => users = value; }
 
         public void AddCar(Car item)
         {
@@ -38,5 +39,6 @@ namespace lab2.Engine.Service
         {
             Orders.Remove(id);
         }
+
     }
 }

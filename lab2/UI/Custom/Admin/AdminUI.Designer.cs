@@ -31,6 +31,7 @@
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.carList = new System.Windows.Forms.TabPage();
+            this.addToListButton = new MaterialSkin.Controls.MaterialButton();
             this.ItemView = new MaterialSkin.Controls.MaterialCard();
             this.priceTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.modelTextBox = new MaterialSkin.Controls.MaterialTextBox();
@@ -46,12 +47,13 @@
             this.ItemList = new System.Windows.Forms.FlowLayoutPanel();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.addToListButton = new MaterialSkin.Controls.MaterialButton();
+            this.orderList = new System.Windows.Forms.FlowLayoutPanel();
             this.materialTabControl1.SuspendLayout();
             this.carList.SuspendLayout();
             this.ItemView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
             this.ItemList.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // materialTabSelector1
@@ -93,6 +95,25 @@
             this.carList.TabIndex = 0;
             this.carList.Text = "CarSharing";
             this.carList.Click += new System.EventHandler(this.carList_Click);
+            // 
+            // addToListButton
+            // 
+            this.addToListButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.addToListButton.Depth = 0;
+            this.addToListButton.DrawShadows = true;
+            this.addToListButton.HighEmphasis = true;
+            this.addToListButton.Icon = null;
+            this.addToListButton.Location = new System.Drawing.Point(922, 546);
+            this.addToListButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.addToListButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.addToListButton.Name = "addToListButton";
+            this.addToListButton.Size = new System.Drawing.Size(139, 36);
+            this.addToListButton.TabIndex = 4;
+            this.addToListButton.Text = "add car to list";
+            this.addToListButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.addToListButton.UseAccentColor = false;
+            this.addToListButton.UseVisualStyleBackColor = true;
+            this.addToListButton.Click += new System.EventHandler(this.addToListButton_Click);
             // 
             // ItemView
             // 
@@ -152,7 +173,7 @@
             this.brandTextBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.brandTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.brandTextBox.Depth = 0;
-            this.brandTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.brandTextBox.Font = new System.Drawing.Font("Roboto", 12F);
             this.brandTextBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.brandTextBox.Location = new System.Drawing.Point(106, 212);
             this.brandTextBox.MaxLength = 50;
@@ -300,32 +321,21 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.orderList);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1080, 605);
+            this.tabPage2.Size = new System.Drawing.Size(1092, 588);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Text = "Orders";
             // 
-            // addToListButton
+            // orderList
             // 
-            this.addToListButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.addToListButton.Depth = 0;
-            this.addToListButton.DrawShadows = true;
-            this.addToListButton.HighEmphasis = true;
-            this.addToListButton.Icon = null;
-            this.addToListButton.Location = new System.Drawing.Point(922, 546);
-            this.addToListButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.addToListButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.addToListButton.Name = "addToListButton";
-            this.addToListButton.Size = new System.Drawing.Size(139, 36);
-            this.addToListButton.TabIndex = 4;
-            this.addToListButton.Text = "add car to list";
-            this.addToListButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            this.addToListButton.UseAccentColor = false;
-            this.addToListButton.UseVisualStyleBackColor = true;
-            this.addToListButton.Click += new System.EventHandler(this.addToListButton_Click);
+            this.orderList.Location = new System.Drawing.Point(8, 6);
+            this.orderList.Name = "orderList";
+            this.orderList.Size = new System.Drawing.Size(1078, 576);
+            this.orderList.TabIndex = 0;
             // 
             // AdminUI
             // 
@@ -343,6 +353,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.image)).EndInit();
             this.ItemList.ResumeLayout(false);
             this.ItemList.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -368,5 +379,6 @@
         private MaterialSkin.Controls.MaterialButton deleteButton;
         private MaterialSkin.Controls.MaterialMultiLineTextBox commentTextBox;
         private MaterialSkin.Controls.MaterialButton addToListButton;
+        private System.Windows.Forms.FlowLayoutPanel orderList;
     }
 }

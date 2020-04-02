@@ -10,34 +10,33 @@ using System.Threading.Tasks;
 
 namespace lab2.Engine.Repository
 {
-    public class CarRepository
+    class UserRepository
     {
-        private static string filename = "carList.txt";
+        private static string filename = "userList.txt";
 
-    
-        public static void writeFile(Dictionary<string ,Car> carList)
+
+        public static void writeFile(Dictionary<string, IAuthorizedUser> carList)
         {
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Write);
             formatter.Serialize(stream, carList);
             stream.Close();
         }
-        public static Dictionary<string, Car> readFile()
+        public static Dictionary<string, IAuthorizedUser> readFile()
         {
-                IFormatter formatter = new BinaryFormatter();
-                Stream stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Read);
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Read);
             try
             {
-                Dictionary<string, Car> list = (Dictionary<string, Car>)formatter.Deserialize(stream);
+                Dictionary<string, IAuthorizedUser> list = (Dictionary<string, IAuthorizedUser>)formatter.Deserialize(stream);
                 stream.Close();
                 return list;
             }
             catch
             {
                 stream.Close();
-                return new Dictionary<string, Car>();
+                return new Dictionary<string, IAuthorizedUser>();
             }
-            //   return new Dictionary<string, Car>();
         }
     }
 }
