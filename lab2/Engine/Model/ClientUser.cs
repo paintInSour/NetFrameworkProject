@@ -7,19 +7,11 @@ using System.Threading.Tasks;
 namespace lab2.Engine.Model
 {
     [Serializable]
-    public class ClientUser : IAuthorizedUser
+    public class ClientUser :AuthoerizedUser, IAuthorizedUser
     {
-        private string login;
-        private string password;
-        private string name;
-        private string userId;
         private Car order;
 
         public Car Order { get => order; set => order = value; }
-        public string Login { get => login; set => login = value; }
-        public string Password { get => password; set => password = value; }
-        public string Name { get => name; set => name = value; }
-        public string UserId { get => userId; set => userId = value; }
 
         public ClientUser(string login,string pass, string id)
         {

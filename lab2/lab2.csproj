@@ -51,10 +51,11 @@
   <ItemGroup>
     <Compile Include="Engine\IService\ICarSharingService.cs" />
     <Compile Include="Engine\Model\AdminUser.cs" />
+    <Compile Include="Engine\Model\AuthoerizedUser.cs" />
     <Compile Include="Engine\Model\Car.cs" />
     <Compile Include="Engine\Model\ClientUser.cs" />
     <Compile Include="Engine\Model\Order.cs" />
-    <Compile Include="Engine\Model\AuthorizedUser.cs" />
+    <Compile Include="Engine\Model\IAuthorizedUser.cs" />
     <Compile Include="Engine\Repository\CarRepository.cs" />
     <Compile Include="Engine\Repository\OrderRepository.cs" />
     <Compile Include="Engine\Repository\UserRepository.cs" />
