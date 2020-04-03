@@ -9,14 +9,15 @@ namespace lab2.Engine.Model
     [Serializable]
     public class AuthoerizedUser
     {
-        private string login;
-        private string password;
-        private string name;
-        private string userId;
+        protected string login;
+        protected string password;
+        protected string userId;
 
-        public string Login { get => login; set => login = value; }
-        public string Password { get => password; set => password = value; }
-        public string Name { get => name; set => name = value; }
-        public string UserId { get => userId; set => userId = value; }
+        public AuthoerizedUser(string login, string password, string userId)
+        {
+            this.login = login;
+            this.password = password;
+            this.userId = userId;
+        }
     }
 }

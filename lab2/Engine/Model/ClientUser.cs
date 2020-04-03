@@ -13,11 +13,8 @@ namespace lab2.Engine.Model
 
         public Car Order { get => order; set => order = value; }
 
-        public ClientUser(string login,string pass, string id)
+        public ClientUser(string login,string pass, string id):base(login,pass,id)
         {
-            Login = login;
-            Password = pass;
-            UserId = id;
             Order = null;
         }
 
@@ -38,16 +35,16 @@ namespace lab2.Engine.Model
 
         public string GetId()
         {
-            return UserId;
+            return userId;
         }
 
         public string GetLogin()
         {
-            return Login;
+            return login;
         }
         public string GetPassword()
         {
-                return Password;
+            return password;
         }
     }
 }
