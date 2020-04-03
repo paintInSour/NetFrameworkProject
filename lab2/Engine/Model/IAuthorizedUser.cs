@@ -9,8 +9,8 @@ namespace lab2.Engine.Model
     public interface IAuthorizedUser
     {
         bool IsAdmin();
-        Car GetOrder();
-        void SetOrder(Car order);
+        Order GetOrder();
+        void SetOrder(Order order);
         string GetId();
         string GetLogin();
         string GetPassword();

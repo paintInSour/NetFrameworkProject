@@ -21,6 +21,7 @@ namespace lab2.UI.Custom.User
         private Car chosenItem;
         private CarSharingService carSharingService;
         private IAuthorizedUser user;
+        delegate void updateUi();
         public UserUI(CarSharingService carSharing, IAuthorizedUser user)
         {
             InitializeComponent();
@@ -49,10 +50,12 @@ namespace lab2.UI.Custom.User
             {
                 noOrderCard.Visible = false;
                 orderCard.Visible = true;
-                orderImage.Image = user.GetOrder().Image;
-                orderBrandLabel.Text = user.GetOrder().Brand;
-                orderModelLabel.Text = user.GetOrder().Model;
-                orderCommentLabel.Text = user.GetOrder().Comment;
+                orderImage.Image = user.GetOrder().Car.Image;
+                orderBrandLabel.Text = user.GetOrder().Car.Brand;
+                orderModelLabel.Text = user.GetOrder().Car.Model;
+                orderCommentLabel.Text = user.GetOrder().Car.Comment;
+                startDateLabel.Text = user.GetOrder().StartDate;
+                endDateLabel.Text = user.GetOrder().EndDate;
             }
         }
 
@@ -82,12 +85,10 @@ namespace lab2.UI.Custom.User
         private void materialButton1_Click(object sender, EventArgs e)
         {
 
-            carSharingService.AddOrder(new Order(Guid.NewGuid().ToString(),chosenItem,User.GetId(),User.GetId()));
-            carSharingService.DeleteCar(chosenItem.Id);
-            OrderRepository.writeFile(carSharingService.Orders);
-            CarRepository.writeFile(carSharingService.Cars);
-            MaxListWidth();
-            reloadList();
+            updateUi setMaxWidth = new updateUi(MaxListWidth);
+            updateUi reloadUI = new updateUi(reloadList);
+            OrderWizard orderWizard = new OrderWizard(carSharingService, chosenItem, user, MaxListWidth, reloadList);
+            orderWizard.Show();
         }
 
         public void MaxListWidth()
@@ -114,7 +115,7 @@ namespace lab2.UI.Custom.User
 
         private void orderReturn_Click(object sender, EventArgs e)
         {
-            carSharingService.AddCar(user.GetOrder());
+            carSharingService.AddCar(user.GetOrder().Car);
             user.SetOrder(null);
             setOrderUI(user);
         }

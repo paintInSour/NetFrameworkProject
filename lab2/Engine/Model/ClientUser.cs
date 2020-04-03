@@ -9,16 +9,16 @@ namespace lab2.Engine.Model
     [Serializable]
     public class ClientUser :AuthoerizedUser, IAuthorizedUser
     {
-        private Car order;
+        private Order order;
 
-        public Car Order { get => order; set => order = value; }
+        public Order Order { get => order; set => order = value; }
 
         public ClientUser(string login,string pass, string id):base(login,pass,id)
         {
             Order = null;
         }
 
-        public Car GetOrder()
+        public Order GetOrder()
         {
             return Order;
         }
@@ -28,7 +28,7 @@ namespace lab2.Engine.Model
             return false;
         }
 
-        public void SetOrder(Car order)
+        public void SetOrder(Order order)
         {
             Order = order;
         }

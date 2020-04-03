@@ -69,7 +69,7 @@ namespace lab2.UI.Custom
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-            carSharingService.Users[order.UserId].SetOrder(order.Car);
+            carSharingService.Users[order.UserId].SetOrder(order);
             UserRepository.writeFile(carSharingService.Users);
             CarRepository.writeFile(carSharingService.Cars);
             OrderRepository.writeFile(carSharingService.Orders);

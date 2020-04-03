@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace lab2.Engine.Model
 {
     [Serializable]
-    public class Car
+    public sealed class Car
     {
         public string Id { get; set; }
         public Image Image { get; set; }

@@ -23,7 +23,7 @@ namespace lab2.Engine.Model
             throw new NotImplementedException();
         }
 
-        public Car GetOrder()
+        public Order GetOrder()
         {
             throw new NotImplementedException();
         }
@@ -38,7 +38,7 @@ namespace lab2.Engine.Model
             return true;
         }
 
-        public void SetOrder(Car order)
+        public void SetOrder(Order order)
         {
             throw new NotImplementedException();
         }

@@ -56,6 +56,10 @@
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.orderImage = new System.Windows.Forms.PictureBox();
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
+            this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
+            this.startDateLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.endDateLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
             this.materialTabControl1.SuspendLayout();
             this.carList.SuspendLayout();
             this.ItemView.SuspendLayout();
@@ -287,7 +291,7 @@
             this.noOrderCard.MouseState = MaterialSkin.MouseState.HOVER;
             this.noOrderCard.Name = "noOrderCard";
             this.noOrderCard.Padding = new System.Windows.Forms.Padding(14);
-            this.noOrderCard.Size = new System.Drawing.Size(1003, 462);
+            this.noOrderCard.Size = new System.Drawing.Size(1003, 477);
             this.noOrderCard.TabIndex = 4;
             // 
             // noOrder
@@ -306,6 +310,10 @@
             // orderCard
             // 
             this.orderCard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.orderCard.Controls.Add(this.materialLabel12);
+            this.orderCard.Controls.Add(this.endDateLabel);
+            this.orderCard.Controls.Add(this.startDateLabel);
+            this.orderCard.Controls.Add(this.materialLabel7);
             this.orderCard.Controls.Add(this.orderReturn);
             this.orderCard.Controls.Add(this.orderCommentLabel);
             this.orderCard.Controls.Add(this.orderModelLabel);
@@ -354,7 +362,7 @@
             this.orderCommentLabel.Location = new System.Drawing.Point(373, 192);
             this.orderCommentLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.orderCommentLabel.Name = "orderCommentLabel";
-            this.orderCommentLabel.Size = new System.Drawing.Size(509, 144);
+            this.orderCommentLabel.Size = new System.Drawing.Size(509, 100);
             this.orderCommentLabel.TabIndex = 1;
             this.orderCommentLabel.Text = "materialLabel5";
             // 
@@ -445,6 +453,58 @@
             this.materialTabSelector1.TabIndex = 0;
             this.materialTabSelector1.Text = "materialTabSelector1";
             // 
+            // materialLabel7
+            // 
+            this.materialLabel7.AutoSize = true;
+            this.materialLabel7.Depth = 0;
+            this.materialLabel7.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel7.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            this.materialLabel7.Location = new System.Drawing.Point(380, 363);
+            this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel7.Name = "materialLabel7";
+            this.materialLabel7.Size = new System.Drawing.Size(118, 29);
+            this.materialLabel7.TabIndex = 3;
+            this.materialLabel7.Text = "Start date :";
+            // 
+            // startDateLabel
+            // 
+            this.startDateLabel.AutoSize = true;
+            this.startDateLabel.Depth = 0;
+            this.startDateLabel.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.startDateLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            this.startDateLabel.Location = new System.Drawing.Point(529, 363);
+            this.startDateLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.startDateLabel.Name = "startDateLabel";
+            this.startDateLabel.Size = new System.Drawing.Size(160, 29);
+            this.startDateLabel.TabIndex = 3;
+            this.startDateLabel.Text = "materialLabel7";
+            // 
+            // endDateLabel
+            // 
+            this.endDateLabel.AutoSize = true;
+            this.endDateLabel.Depth = 0;
+            this.endDateLabel.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.endDateLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            this.endDateLabel.Location = new System.Drawing.Point(529, 399);
+            this.endDateLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.endDateLabel.Name = "endDateLabel";
+            this.endDateLabel.Size = new System.Drawing.Size(160, 29);
+            this.endDateLabel.TabIndex = 3;
+            this.endDateLabel.Text = "materialLabel7";
+            // 
+            // materialLabel12
+            // 
+            this.materialLabel12.AutoSize = true;
+            this.materialLabel12.Depth = 0;
+            this.materialLabel12.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel12.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            this.materialLabel12.Location = new System.Drawing.Point(380, 399);
+            this.materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel12.Name = "materialLabel12";
+            this.materialLabel12.Size = new System.Drawing.Size(108, 29);
+            this.materialLabel12.TabIndex = 3;
+            this.materialLabel12.Text = "End date :";
+            // 
             // UserUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -500,5 +560,9 @@
         private MaterialSkin.Controls.MaterialCard orderCard;
         private MaterialSkin.Controls.MaterialCard noOrderCard;
         private MaterialSkin.Controls.MaterialLabel noOrder;
+        private MaterialSkin.Controls.MaterialLabel materialLabel12;
+        private MaterialSkin.Controls.MaterialLabel endDateLabel;
+        private MaterialSkin.Controls.MaterialLabel startDateLabel;
+        private MaterialSkin.Controls.MaterialLabel materialLabel7;
     }
 }
