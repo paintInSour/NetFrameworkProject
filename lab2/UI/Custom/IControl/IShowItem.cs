@@ -1,11 +1,11 @@
-﻿using lab2.Engine.Model;
+﻿using netFrameworkProject.Engine.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab2.UI.Custom.IControl
+namespace netFrameworkProject.UI.Custom.IControl
 {
     public interface IShowItem
     {

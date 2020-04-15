@@ -1,4 +1,4 @@
-﻿using lab2.Engine.Model;
+﻿using netFrameworkProject.Engine.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab2.Engine.Repository
+namespace netFrameworkProject.Engine.Repository
 {
     class UserRepository
     {

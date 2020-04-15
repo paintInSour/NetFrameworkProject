@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using lab2.UI.Custom.IControl;
-using lab2.Engine.Model;
+using netFrameworkProject.UI.Custom.IControl;
+using netFrameworkProject.Engine.Model;
 
-namespace lab2.UI.Custom
+namespace netFrameworkProject.UI.Custom
 {
     public partial class ListItem : UserControl
     {

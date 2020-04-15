@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab2.Engine.Model
+namespace netFrameworkProject.Engine.Model
 {
     [Serializable]
     public sealed class Car

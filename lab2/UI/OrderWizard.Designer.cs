@@ -1,4 +1,4 @@
-﻿namespace lab2.UI
+﻿namespace netFrameworkProject.UI
 {
     partial class OrderWizard
     {

@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CDA3AD94-FEF4-4BDB-B3B1-8897ADC241AF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>lab2</RootNamespace>
-    <AssemblyName>lab2</AssemblyName>
+    <RootNamespace>netFrameworkProject</RootNamespace>
+    <AssemblyName>netFrameworkProject</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

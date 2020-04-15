@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using lab2.Engine.Service;
-using lab2.Engine.Model;
-using lab2.UI.Custom.IControl;
-using lab2.Engine.Repository;
+using netFrameworkProject.Engine.Service;
+using netFrameworkProject.Engine.Model;
+using netFrameworkProject.UI.Custom.IControl;
+using netFrameworkProject.Engine.Repository;
 
-namespace lab2.UI.Custom.User
+namespace netFrameworkProject.UI.Custom.User
 {
     public partial class UserUI : UserControl, IShowItem
     {

@@ -1,6 +1,6 @@
-﻿using lab2.Engine.Service;
+﻿using netFrameworkProject.Engine.Service;
 
-namespace lab2
+namespace netFrameworkProject
 {
     partial class Form1
     {

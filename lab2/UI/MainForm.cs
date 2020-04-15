@@ -1,8 +1,8 @@
-﻿using lab2.Engine.Model;
-using lab2.Engine.Repository;
-using lab2.Engine.Service;
-using lab2.UI.Custom.Admin;
-using lab2.UI.Custom.User;
+﻿using netFrameworkProject.Engine.Model;
+using netFrameworkProject.Engine.Repository;
+using netFrameworkProject.Engine.Service;
+using netFrameworkProject.UI.Custom.Admin;
+using netFrameworkProject.UI.Custom.User;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace lab2
+namespace netFrameworkProject
 {
     public partial class Form1 : MaterialForm
     {

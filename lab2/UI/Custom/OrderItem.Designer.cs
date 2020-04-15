@@ -1,4 +1,4 @@
-﻿namespace lab2.UI.Custom
+﻿namespace netFrameworkProject.UI.Custom
 {
     partial class OrderItem
     {

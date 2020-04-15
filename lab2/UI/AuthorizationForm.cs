@@ -1,6 +1,6 @@
-﻿using lab2.Engine.Model;
-using lab2.Engine.Repository;
-using lab2.Engine.Service;
+﻿using netFrameworkProject.Engine.Model;
+using netFrameworkProject.Engine.Repository;
+using netFrameworkProject.Engine.Service;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace lab2.UI
+namespace netFrameworkProject.UI
 {
     public partial class AuthorizationForm : MaterialForm
     {

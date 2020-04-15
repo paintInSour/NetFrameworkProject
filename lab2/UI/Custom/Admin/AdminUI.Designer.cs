@@ -1,4 +1,4 @@
-﻿namespace lab2.UI.Custom.Admin
+﻿namespace netFrameworkProject.UI.Custom.Admin
 {
     partial class AdminUI
     {

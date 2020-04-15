@@ -1,4 +1,4 @@
-﻿namespace lab2.UI.Custom.User
+﻿namespace netFrameworkProject.UI.Custom.User
 {
     partial class UserUI
     {

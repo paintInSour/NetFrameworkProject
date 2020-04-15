@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using lab2.Engine.Service;
-using lab2.Engine.Model;
-using lab2.Engine.Repository;
+using netFrameworkProject.Engine.Service;
+using netFrameworkProject.Engine.Model;
+using netFrameworkProject.Engine.Repository;
 
-namespace lab2.UI.Custom
+namespace netFrameworkProject.UI.Custom
 {
     public partial class OrderItem : UserControl
     {
