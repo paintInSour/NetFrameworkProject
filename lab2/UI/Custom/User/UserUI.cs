@@ -8,15 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using lab2.Engine.Service;
-using lab2.Engine.IService;
 using lab2.Engine.Model;
 using lab2.UI.Custom.IControl;
-using lab2.Engine.Model;
 using lab2.Engine.Repository;
 
 namespace lab2.UI.Custom.User
 {
-    public partial class UserUI : UserControl ,IShowItem
+    public partial class UserUI : UserControl, IShowItem
     {
         private Car chosenItem;
         private CarSharingService carSharingService;
@@ -28,7 +26,6 @@ namespace lab2.UI.Custom.User
             carSharingService = carSharing;
             reloadList();
             User = user;
-
             MaxListWidth();
             setOrderUI(user);
         }

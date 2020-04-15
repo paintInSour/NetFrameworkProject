@@ -20,35 +20,34 @@ namespace lab2
     public partial class Form1 : MaterialForm
     {
         private CarSharingService carService;
-        public Form1(IAuthorizedUser user , CarSharingService carSharingService)
+        public Form1(IAuthorizedUser user, CarSharingService carSharingService)
         {
             carService = carSharingService;
             if (user.IsAdmin())
-                generateAdminForm(carSharingService ,user);
+                generateAdminForm(carSharingService, user);
             else
-                generateUserForm(carSharingService ,user);
+                generateUserForm(carSharingService, user);
 
             InitializeComponent();
         }
-        public void generateUserForm(CarSharingService carSharingService,IAuthorizedUser user)
+        public void generateUserForm(CarSharingService carSharingService, IAuthorizedUser user)
         {
-            UserUI ui = new UserUI(carSharingService,user);
+            UserUI ui = new UserUI(carSharingService, user);
             ui.Location = new System.Drawing.Point(0, 64);
             ui.Name = "adminUI1";
             ui.Size = new System.Drawing.Size(1100, 662);
             ui.TabIndex = 1;
             Controls.Add(ui);
         }
-        public void generateAdminForm(CarSharingService carSharingService,IAuthorizedUser user)
+        public void generateAdminForm(CarSharingService carSharingService, IAuthorizedUser user)
         {
-            AdminUI ui = new AdminUI(carSharingService,user);
+            AdminUI ui = new AdminUI(carSharingService, user);
             ui.Location = new System.Drawing.Point(0, 64);
             ui.Name = "adminUI1";
             ui.Size = new System.Drawing.Size(1100, 662);
             ui.TabIndex = 1;
             Controls.Add(ui);
         }
-    
         public void GenerateLightTheme()
         {
 

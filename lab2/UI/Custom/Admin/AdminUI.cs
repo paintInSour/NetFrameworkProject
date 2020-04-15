@@ -9,24 +9,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using lab2.UI.Custom.IControl;
 using lab2.Engine.Model;
-using lab2.Engine.IService;
 using lab2.Engine.Service;
 using lab2.Engine.Repository;
 
 namespace lab2.UI.Custom.Admin
 {
-    public partial class AdminUI : UserControl,IShowItem
+    public partial class AdminUI : UserControl, IShowItem
     {
-        private ICarSharingService userCarSharingService;
         private Car chosenItem;
         private CarSharingService carSharingService;
         private IAuthorizedUser user;
         public AdminUI()
         {
             InitializeComponent();
-          
+
         }
-        public AdminUI(CarSharingService carSharing , IAuthorizedUser user)
+        public AdminUI(CarSharingService carSharing, IAuthorizedUser user)
         {
             InitializeComponent();
             carSharingService = carSharing;
@@ -36,11 +34,10 @@ namespace lab2.UI.Custom.Admin
             User = user;
 
             List<OrderItem> orderItems = new List<OrderItem>();
-            CarSharingService.Orders.ToList().ForEach(item => orderItems.Add(new OrderItem(carSharingService, item.Value,orderList)));
+            CarSharingService.Orders.ToList().ForEach(item => orderItems.Add(new OrderItem(carSharingService, item.Value, orderList)));
             orderList.Controls.AddRange(orderItems.ToArray());
         }
 
-        public ICarSharingService UserCarSharingService { get => userCarSharingService; set => userCarSharingService = value; }
         public Car ChosenItem { get => chosenItem; set => chosenItem = value; }
         public CarSharingService CarSharingService { get => carSharingService; set => carSharingService = value; }
         public IAuthorizedUser User { get => user; set => user = value; }
@@ -116,7 +113,8 @@ namespace lab2.UI.Custom.Admin
                 carSharingService.Cars.ToList().ForEach(item => list.Add(new ListItem(this, item.Value)));
                 return list;
             }
-            catch{
+            catch
+            {
                 return new List<ListItem>();
             }
         }

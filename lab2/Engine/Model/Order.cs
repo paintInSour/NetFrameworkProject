@@ -16,7 +16,7 @@ namespace lab2.Engine.Model
         private string startDate;
         private string endDate;
 
-        public Order(string id, Car car,string userId,string bankId ,string startDate,string endDate)
+        public Order(string id, Car car, string userId, string bankId, string startDate, string endDate)
         {
             Id = id;
             Car = car;

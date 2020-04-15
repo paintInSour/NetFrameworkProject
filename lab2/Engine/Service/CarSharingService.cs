@@ -18,7 +18,7 @@ namespace lab2.Engine.Service
 
         public void AddCar(Car item)
         {
-            
+
             if (Cars.ContainsKey(item.Id))
             {
                 Cars.Remove(item.Id);
@@ -33,7 +33,7 @@ namespace lab2.Engine.Service
 
         public void AddOrder(Order item)
         {
-            Orders.Add(item.Id,item);
+            Orders.Add(item.Id, item);
         }
         public void DeleteOrder(string id)
         {

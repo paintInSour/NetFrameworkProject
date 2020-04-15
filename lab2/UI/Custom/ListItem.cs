@@ -22,7 +22,7 @@ namespace lab2.UI.Custom
         {
             InitializeComponent();
         }
-        public ListItem(IShowItem service ,Car item)
+        public ListItem(IShowItem service, Car item)
         {
             InitializeComponent();
             Service = service;
@@ -40,12 +40,12 @@ namespace lab2.UI.Custom
 
         private void ListItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void materialCard1_Paint(object sender, PaintEventArgs e)
         {
-           
+
         }
 
         private void materialCard1_Click(object sender, EventArgs e)

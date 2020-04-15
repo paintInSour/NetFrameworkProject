@@ -18,7 +18,7 @@ namespace lab2.UI.Custom
         private CarSharingService carSharingService;
         private Order order;
         private FlowLayoutPanel orderList;
-        public OrderItem(CarSharingService service,Order order , FlowLayoutPanel list)
+        public OrderItem(CarSharingService service, Order order, FlowLayoutPanel list)
         {
             InitializeComponent();
             CarSharingService = service;
@@ -34,7 +34,7 @@ namespace lab2.UI.Custom
             orderPriceLabel.Text = order.Car.Price;
             OrderUserId.Text = order.UserBankId;
             orderUserName.Text = "username";
-            
+
         }
 
         public CarSharingService CarSharingService { get => carSharingService; set => carSharingService = value; }
@@ -83,6 +83,6 @@ namespace lab2.UI.Custom
             CarSharingService.Orders.ToList().ForEach(item => orderItems.Add(new OrderItem(carSharingService, item.Value, orderList)));
             orderList.Controls.AddRange(orderItems.ToArray());
         }
-         
+
     }
 }

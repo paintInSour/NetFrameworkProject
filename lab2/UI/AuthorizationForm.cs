@@ -50,7 +50,7 @@ namespace lab2.UI
                 mainForm.Show();
             }
             UserRepository.writeFile(CarService.Users);
-            
+
         }
 
         private void AuthorizationForm_Load(object sender, EventArgs e)

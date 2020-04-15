@@ -19,5 +19,13 @@ namespace lab2.Engine.Model
             this.password = password;
             this.userId = userId;
         }
+        public void AbsolutelyUselessMethod()
+        {
+            Console.WriteLine("executing absolutely useless method");
+        }
+        public virtual void AnotherAbsolutelyUselessMethod()
+        {
+            Console.WriteLine("executing another absolutely useless method");
+        }
     }
 }

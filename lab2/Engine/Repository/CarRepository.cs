@@ -14,8 +14,8 @@ namespace lab2.Engine.Repository
     {
         private static string filename = "carList.txt";
 
-    
-        public static void writeFile(Dictionary<string ,Car> carList)
+
+        public static void writeFile(Dictionary<string, Car> carList)
         {
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Write);
@@ -24,8 +24,8 @@ namespace lab2.Engine.Repository
         }
         public static Dictionary<string, Car> readFile()
         {
-                IFormatter formatter = new BinaryFormatter();
-                Stream stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Read);
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Read);
             try
             {
                 Dictionary<string, Car> list = (Dictionary<string, Car>)formatter.Deserialize(stream);

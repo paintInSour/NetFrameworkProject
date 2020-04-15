@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace lab2.Engine.Model
 {
-        [Serializable]
-    class AdminUser : IAuthorizedUser
+    [Serializable]
+    public sealed class AdminUser : IAuthorizedUser
     {
         public AdminUser()
         {

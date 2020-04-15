@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 namespace lab2.Engine.Model
 {
     [Serializable]
-    public class ClientUser :AuthoerizedUser, IAuthorizedUser
+    public sealed class ClientUser : AuthoerizedUser, IAuthorizedUser
     {
+        private string id;
         private Order order;
 
         public Order Order { get => order; set => order = value; }
+        public string Id { get => id; set => id = value; }
 
-        public ClientUser(string login,string pass, string id):base(login,pass,id)
+        public ClientUser(string login, string pass, string id) : base(login, pass, id)
         {
             Order = null;
         }
@@ -45,6 +47,14 @@ namespace lab2.Engine.Model
         public string GetPassword()
         {
             return password;
+        }
+        new public void AbsolutelyUselessMethod()
+        {
+            Console.WriteLine("executing absolutely useless method created with new");
+        }
+        public override void AnotherAbsolutelyUselessMethod()
+        {
+            Console.WriteLine("executing overrided absolutely useless method");
         }
     }
 }

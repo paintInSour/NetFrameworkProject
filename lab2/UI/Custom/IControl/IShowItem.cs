@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace lab2.UI.Custom.IControl
 {
-   public interface IShowItem
+    public interface IShowItem
     {
         void ShowItem(Car item);
         void SetChosenItem(Car item);

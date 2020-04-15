@@ -16,13 +16,13 @@ namespace lab2.UI
 {
     public partial class OrderWizard : MaterialForm
     {
-       private CarSharingService CarSharingService;
-       private Car itemToOrder;
-       private IAuthorizedUser authorizedUser;
-       public delegate void updateUI();
+        private CarSharingService CarSharingService;
+        private Car itemToOrder;
+        private IAuthorizedUser authorizedUser;
+        public delegate void updateUI();
         private updateUI UpdateWidth;
         private updateUI UpdateList;
-        public OrderWizard(CarSharingService service, Car car,IAuthorizedUser user , updateUI updateWidth ,updateUI updateList)
+        public OrderWizard(CarSharingService service, Car car, IAuthorizedUser user, updateUI updateWidth, updateUI updateList)
         {
             InitializeComponent();
             CarSharingService = service;
