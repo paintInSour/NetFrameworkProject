@@ -7,35 +7,58 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using netFrameworkProject.DB;
+using AppContext = netFrameworkProject.DB.AppContext;
 
 namespace netFrameworkProject.Engine.Repository
 {
-    class UserRepository
+    public class UserRepository
     {
-        private static string filename = "userList.txt";
-
-
-        public static void writeFile(Dictionary<string, IAuthorizedUser> carList)
+        public static AuthorizedUser GetUser(string username, string password)
         {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Write);
-            formatter.Serialize(stream, carList);
-            stream.Close();
-        }
-        public static Dictionary<string, IAuthorizedUser> readFile()
-        {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Read);
-            try
+            using (AppContext ctx = new AppContext())
             {
-                Dictionary<string, IAuthorizedUser> list = (Dictionary<string, IAuthorizedUser>)formatter.Deserialize(stream);
-                stream.Close();
-                return list;
+                return ctx.users.Where(user => user.Login == username && user.Password == password)
+                    .FirstOrDefault();
             }
-            catch
+        }
+        public static AuthorizedUser GetUserById(int userId)
+        {
+            using(AppContext ctx = new AppContext())
             {
-                stream.Close();
-                return new Dictionary<string, IAuthorizedUser>();
+                return ctx.users.Where(user => user.UserId == userId).First();
+            }
+        }
+        public static void SaveUser(AuthorizedUser user)
+        {
+            using (AppContext ctx = new AppContext())
+            {
+                ctx.users.Add(user);
+                ctx.SaveChanges();
+            }
+        }
+        public static void UpdateUser(AuthorizedUser newUser)
+        {
+            using (AppContext ctx = new AppContext())
+            {
+                var user = ctx.users.Where(item => item.Login == newUser.Login).First();
+                user = newUser;
+                ctx.SaveChanges();
+
+            }
+        }
+        public static AuthorizedUser GetAdminUser(string login,string password)
+        {
+            using(AppContext ctx = new AppContext())
+            {
+                return ctx.admins.Where(item => item.Login == login && item.Password == password).FirstOrDefault(null);
+            }
+        }
+        public static List<AuthorizedUser> GetAllUsers()
+        {
+            using(AppContext ctx = new AppContext())
+            {
+                return ctx.users.ToList();
             }
         }
     }

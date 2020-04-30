@@ -1,15 +1,8 @@
-﻿using netFrameworkProject.Engine.Model;
+﻿using MaterialSkin.Controls;
+using netFrameworkProject.Engine.Model;
 using netFrameworkProject.Engine.Repository;
 using netFrameworkProject.Engine.Service;
-using MaterialSkin.Controls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace netFrameworkProject.UI
@@ -17,7 +10,7 @@ namespace netFrameworkProject.UI
     public partial class AuthorizationForm : MaterialForm
     {
         private CarSharingService CarService = new CarSharingService();
-        private IAuthorizedUser authorizedUser;
+        private AuthorizedUser authorizedUser;
         public AuthorizationForm()
         {
             InitializeComponent();
@@ -25,39 +18,28 @@ namespace netFrameworkProject.UI
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
-            if (user.Checked == true)
+            try
             {
-                CarService.Users.ToList().ForEach(user =>
-                {
-                    if (user.Value.GetLogin()
-                        == logingTextBox.Text && user.Value.GetPassword() == passwordTextBox.Text)
-                    {
-                        authorizedUser = CarService.Users[user.Key];
-                    }
-                });
+                authorizedUser = UserRepository.GetUser(logingTextBox.Text, passwordTextBox.Text);
                 if (authorizedUser == null)
-                {
-                    authorizedUser = new ClientUser(logingTextBox.Text, passwordTextBox.Text, Guid.NewGuid().ToString());
-                    CarService.Users.Add(authorizedUser.GetId(), authorizedUser);
-                }
-                Form1 frm = new Form1(authorizedUser, CarService);
-                frm.Show();
-            }
-            else
-            {
-                authorizedUser = new AdminUser();
+                    UserRepository.SaveUser(new ClientUser(logingTextBox.Text, passwordTextBox.Text));
                 Form1 mainForm = new Form1(authorizedUser, CarService);
                 mainForm.Show();
             }
-            UserRepository.writeFile(CarService.Users);
+            catch (Exception)
+            {
+                MessageBox.Show("Cannot login. Registrated this user");
+
+                //if (user.Checked)
+                //    UserRepository.SaveUser(new ClientUser(logingTextBox.Text, passwordTextBox.Text, BitConverter.ToInt32(Guid.NewGuid().ToByteArray(), 0)));
+
+                //  UserRepository.SaveUser(new AdminUser(logingTextBox.Text, passwordTextBox.Text, BitConverter.ToInt32(Guid.NewGuid().ToByteArray(), 0)));
+            }
 
         }
 
         private void AuthorizationForm_Load(object sender, EventArgs e)
         {
-            CarService.Cars = CarRepository.readFile();
-            CarService.Orders = OrderRepository.readFile();
-            CarService.Users = UserRepository.readFile();
         }
     }
 }

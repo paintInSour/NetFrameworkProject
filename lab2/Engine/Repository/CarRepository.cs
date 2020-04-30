@@ -7,37 +7,66 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using netFrameworkProject.DB;
+using AppContext = netFrameworkProject.DB.AppContext;
 
 namespace netFrameworkProject.Engine.Repository
 {
     public class CarRepository
     {
-        private static string filename = "carList.txt";
-
-
-        public static void writeFile(Dictionary<string, Car> carList)
+        public static void SaveCars(List<Car> cars)
         {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Write);
-            formatter.Serialize(stream, carList);
-            stream.Close();
+            using (AppContext ctx = new AppContext())
+            {
+                ctx.cars.AddRange(cars);
+                ctx.SaveChanges();
+            }
         }
-        public static Dictionary<string, Car> readFile()
+        public static void SaveCar(Car car)
         {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Read);
-            try
+            using (AppContext ctx = new AppContext())
             {
-                Dictionary<string, Car> list = (Dictionary<string, Car>)formatter.Deserialize(stream);
-                stream.Close();
-                return list;
+                ctx.cars.Add(car);
+                ctx.SaveChanges();
             }
-            catch
+        }
+        public static void DeleteCar(Car car)
+        {
+            using(AppContext ctx = new AppContext())
             {
-                stream.Close();
-                return new Dictionary<string, Car>();
+                ctx.cars.Remove(car);
+                ctx.SaveChanges();
             }
-            //   return new Dictionary<string, Car>();
+        }
+        public static List<Car> GetAllCars()
+        {
+            using (AppContext ctx = new AppContext())
+            {
+                return ctx.cars.ToList();
+            }
+        }
+        public static void UpdateCar(int id, Car newCar)
+        {
+            using(AppContext ctx = new AppContext())
+            {
+                var car = ctx.cars.Where(item => item.Id == id).First();
+                ctx.Entry(car).CurrentValues.SetValues(newCar);
+                ctx.SaveChanges();
+            }
+        }
+        public static Car GetCar(int id)
+        {
+            using(AppContext ctx = new AppContext())
+            {
+                return ctx.cars.Where(item => item.Id == id).First();
+            }
+        }
+        public static List<Car> GetActiveCars()
+        {
+            using (AppContext ctx = new AppContext())
+            {
+                return ctx.cars.Where(item => item.Active).ToList();
+            }
         }
     }
 }

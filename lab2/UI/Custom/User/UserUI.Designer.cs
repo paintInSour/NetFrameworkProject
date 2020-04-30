@@ -47,6 +47,10 @@
             this.noOrderCard = new MaterialSkin.Controls.MaterialCard();
             this.noOrder = new MaterialSkin.Controls.MaterialLabel();
             this.orderCard = new MaterialSkin.Controls.MaterialCard();
+            this.materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
+            this.endDateLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.startDateLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             this.orderReturn = new MaterialSkin.Controls.MaterialButton();
             this.orderCommentLabel = new MaterialSkin.Controls.MaterialLabel();
             this.orderModelLabel = new MaterialSkin.Controls.MaterialLabel();
@@ -56,10 +60,6 @@
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.orderImage = new System.Windows.Forms.PictureBox();
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
-            this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
-            this.startDateLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.endDateLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
             this.materialTabControl1.SuspendLayout();
             this.carList.SuspendLayout();
             this.ItemView.SuspendLayout();
@@ -112,12 +112,12 @@
             this.ItemView.Controls.Add(this.materialLabel6);
             this.ItemView.Depth = 0;
             this.ItemView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.ItemView.Location = new System.Drawing.Point(780, 11);
+            this.ItemView.Location = new System.Drawing.Point(780, 28);
             this.ItemView.Margin = new System.Windows.Forms.Padding(14);
             this.ItemView.MouseState = MaterialSkin.MouseState.HOVER;
             this.ItemView.Name = "ItemView";
             this.ItemView.Padding = new System.Windows.Forms.Padding(14);
-            this.ItemView.Size = new System.Drawing.Size(295, 518);
+            this.ItemView.Size = new System.Drawing.Size(295, 520);
             this.ItemView.TabIndex = 3;
             // 
             // materialButton1
@@ -145,6 +145,7 @@
             this.image.Location = new System.Drawing.Point(36, 17);
             this.image.Name = "image";
             this.image.Size = new System.Drawing.Size(219, 186);
+            this.image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.image.TabIndex = 1;
             this.image.TabStop = false;
             // 
@@ -251,9 +252,9 @@
             // ItemList
             // 
             this.ItemList.Controls.Add(this.materialLabel1);
-            this.ItemList.Location = new System.Drawing.Point(22, 11);
+            this.ItemList.Location = new System.Drawing.Point(22, 28);
             this.ItemList.Name = "ItemList";
-            this.ItemList.Size = new System.Drawing.Size(725, 527);
+            this.ItemList.Size = new System.Drawing.Size(725, 520);
             this.ItemList.TabIndex = 0;
             // 
             // materialLabel1
@@ -333,6 +334,58 @@
             this.orderCard.TabIndex = 3;
             this.orderCard.Visible = false;
             this.orderCard.Paint += new System.Windows.Forms.PaintEventHandler(this.orderCard_Paint);
+            // 
+            // materialLabel12
+            // 
+            this.materialLabel12.AutoSize = true;
+            this.materialLabel12.Depth = 0;
+            this.materialLabel12.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel12.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            this.materialLabel12.Location = new System.Drawing.Point(380, 399);
+            this.materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel12.Name = "materialLabel12";
+            this.materialLabel12.Size = new System.Drawing.Size(108, 29);
+            this.materialLabel12.TabIndex = 3;
+            this.materialLabel12.Text = "End date :";
+            // 
+            // endDateLabel
+            // 
+            this.endDateLabel.AutoSize = true;
+            this.endDateLabel.Depth = 0;
+            this.endDateLabel.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.endDateLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            this.endDateLabel.Location = new System.Drawing.Point(529, 399);
+            this.endDateLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.endDateLabel.Name = "endDateLabel";
+            this.endDateLabel.Size = new System.Drawing.Size(160, 29);
+            this.endDateLabel.TabIndex = 3;
+            this.endDateLabel.Text = "materialLabel7";
+            // 
+            // startDateLabel
+            // 
+            this.startDateLabel.AutoSize = true;
+            this.startDateLabel.Depth = 0;
+            this.startDateLabel.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.startDateLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            this.startDateLabel.Location = new System.Drawing.Point(529, 363);
+            this.startDateLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.startDateLabel.Name = "startDateLabel";
+            this.startDateLabel.Size = new System.Drawing.Size(160, 29);
+            this.startDateLabel.TabIndex = 3;
+            this.startDateLabel.Text = "materialLabel7";
+            // 
+            // materialLabel7
+            // 
+            this.materialLabel7.AutoSize = true;
+            this.materialLabel7.Depth = 0;
+            this.materialLabel7.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel7.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            this.materialLabel7.Location = new System.Drawing.Point(380, 363);
+            this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel7.Name = "materialLabel7";
+            this.materialLabel7.Size = new System.Drawing.Size(118, 29);
+            this.materialLabel7.TabIndex = 3;
+            this.materialLabel7.Text = "Start date :";
             // 
             // orderReturn
             // 
@@ -452,58 +505,6 @@
             this.materialTabSelector1.Size = new System.Drawing.Size(1100, 67);
             this.materialTabSelector1.TabIndex = 0;
             this.materialTabSelector1.Text = "materialTabSelector1";
-            // 
-            // materialLabel7
-            // 
-            this.materialLabel7.AutoSize = true;
-            this.materialLabel7.Depth = 0;
-            this.materialLabel7.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel7.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            this.materialLabel7.Location = new System.Drawing.Point(380, 363);
-            this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel7.Name = "materialLabel7";
-            this.materialLabel7.Size = new System.Drawing.Size(118, 29);
-            this.materialLabel7.TabIndex = 3;
-            this.materialLabel7.Text = "Start date :";
-            // 
-            // startDateLabel
-            // 
-            this.startDateLabel.AutoSize = true;
-            this.startDateLabel.Depth = 0;
-            this.startDateLabel.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.startDateLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            this.startDateLabel.Location = new System.Drawing.Point(529, 363);
-            this.startDateLabel.MouseState = MaterialSkin.MouseState.HOVER;
-            this.startDateLabel.Name = "startDateLabel";
-            this.startDateLabel.Size = new System.Drawing.Size(160, 29);
-            this.startDateLabel.TabIndex = 3;
-            this.startDateLabel.Text = "materialLabel7";
-            // 
-            // endDateLabel
-            // 
-            this.endDateLabel.AutoSize = true;
-            this.endDateLabel.Depth = 0;
-            this.endDateLabel.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.endDateLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            this.endDateLabel.Location = new System.Drawing.Point(529, 399);
-            this.endDateLabel.MouseState = MaterialSkin.MouseState.HOVER;
-            this.endDateLabel.Name = "endDateLabel";
-            this.endDateLabel.Size = new System.Drawing.Size(160, 29);
-            this.endDateLabel.TabIndex = 3;
-            this.endDateLabel.Text = "materialLabel7";
-            // 
-            // materialLabel12
-            // 
-            this.materialLabel12.AutoSize = true;
-            this.materialLabel12.Depth = 0;
-            this.materialLabel12.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel12.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            this.materialLabel12.Location = new System.Drawing.Point(380, 399);
-            this.materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel12.Name = "materialLabel12";
-            this.materialLabel12.Size = new System.Drawing.Size(108, 29);
-            this.materialLabel12.TabIndex = 3;
-            this.materialLabel12.Text = "End date :";
             // 
             // UserUI
             // 

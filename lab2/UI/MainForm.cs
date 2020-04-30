@@ -20,7 +20,7 @@ namespace netFrameworkProject
     public partial class Form1 : MaterialForm
     {
         private CarSharingService carService;
-        public Form1(IAuthorizedUser user, CarSharingService carSharingService)
+        public Form1(AuthorizedUser user, CarSharingService carSharingService)
         {
             carService = carSharingService;
             if (user.IsAdmin())
@@ -30,7 +30,7 @@ namespace netFrameworkProject
 
             InitializeComponent();
         }
-        public void generateUserForm(CarSharingService carSharingService, IAuthorizedUser user)
+        public void generateUserForm(CarSharingService carSharingService, AuthorizedUser user)
         {
             UserUI ui = new UserUI(carSharingService, user);
             ui.Location = new System.Drawing.Point(0, 64);
@@ -39,7 +39,7 @@ namespace netFrameworkProject
             ui.TabIndex = 1;
             Controls.Add(ui);
         }
-        public void generateAdminForm(CarSharingService carSharingService, IAuthorizedUser user)
+        public void generateAdminForm(CarSharingService carSharingService, AuthorizedUser user)
         {
             AdminUI ui = new AdminUI(carSharingService, user);
             ui.Location = new System.Drawing.Point(0, 64);
@@ -59,9 +59,6 @@ namespace netFrameworkProject
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            UserRepository.writeFile(carService.Users);
-            CarRepository.writeFile(carService.Cars);
-            OrderRepository.writeFile(carService.Orders);
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)

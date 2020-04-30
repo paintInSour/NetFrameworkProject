@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace netFrameworkProject.UI
 {
@@ -18,11 +19,11 @@ namespace netFrameworkProject.UI
     {
         private CarSharingService CarSharingService;
         private Car itemToOrder;
-        private IAuthorizedUser authorizedUser;
+        private AuthorizedUser authorizedUser;
         public delegate void updateUI();
         private updateUI UpdateWidth;
         private updateUI UpdateList;
-        public OrderWizard(CarSharingService service, Car car, IAuthorizedUser user, updateUI updateWidth, updateUI updateList)
+        public OrderWizard(CarSharingService service, Car car, AuthorizedUser user, updateUI updateWidth, updateUI updateList)
         {
             InitializeComponent();
             CarSharingService = service;
@@ -31,21 +32,17 @@ namespace netFrameworkProject.UI
             UpdateWidth = updateWidth;
             UpdateList = updateList;
         }
-
         public CarSharingService CarSharingService1 { get => CarSharingService; set => CarSharingService = value; }
         public Car ItemToOrder { get => itemToOrder; set => itemToOrder = value; }
-
         private void materialButton1_Click(object sender, EventArgs e)
         {
-            CarSharingService.AddOrder(new Order(Guid.NewGuid().ToString(), itemToOrder, authorizedUser.GetId(), userIdTextbox.Text, startDatePicker.Text, endDatePicker.Text));
-            CarSharingService.DeleteCar(itemToOrder.Id);
-            OrderRepository.writeFile(CarSharingService.Orders);
-            CarRepository.writeFile(CarSharingService.Cars);
+            itemToOrder.Active = false;
+            Debug.WriteLine("item to order id : " + itemToOrder.Id);
+            CarRepository.UpdateCar(itemToOrder.Id, itemToOrder);
+            CarSharingService.AddOrder(new Order(itemToOrder, authorizedUser.UserId, userIdTextbox.Text, startDatePicker.Text, endDatePicker.Text));
             UpdateList();
             UpdateWidth();
             this.Close();
         }
-
-
     }
 }

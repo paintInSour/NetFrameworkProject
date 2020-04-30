@@ -18,9 +18,9 @@ namespace netFrameworkProject.UI.Custom.User
     {
         private Car chosenItem;
         private CarSharingService carSharingService;
-        private IAuthorizedUser user;
+        private AuthorizedUser user;
         delegate void updateUi();
-        public UserUI(CarSharingService carSharing, IAuthorizedUser user)
+        public UserUI(CarSharingService carSharing, AuthorizedUser user)
         {
             InitializeComponent();
             carSharingService = carSharing;
@@ -32,11 +32,9 @@ namespace netFrameworkProject.UI.Custom.User
         public void reloadList()
         {
             ItemList.Controls.Clear();
-            List<ListItem> list = new List<ListItem>();
-            carSharingService.Cars.ToList().ForEach(item => list.Add(new ListItem(this, item.Value)));
-            ItemList.Controls.AddRange(list.ToArray());
+            ItemList.Controls.AddRange(CarRepository.GetActiveCars().Select(item => new ListItem(this, item)).ToArray());
         }
-        public void setOrderUI(IAuthorizedUser user)
+        public void setOrderUI(AuthorizedUser user)
         {
             if (user.GetOrder() == null)
             {
@@ -47,7 +45,7 @@ namespace netFrameworkProject.UI.Custom.User
             {
                 noOrderCard.Visible = false;
                 orderCard.Visible = true;
-                orderImage.Image = user.GetOrder().Car.Image;
+          //      orderImage.Image = user.GetOrder().Car.Image;
                 orderBrandLabel.Text = user.GetOrder().Car.Brand;
                 orderModelLabel.Text = user.GetOrder().Car.Model;
                 orderCommentLabel.Text = user.GetOrder().Car.Comment;
@@ -55,61 +53,51 @@ namespace netFrameworkProject.UI.Custom.User
                 endDateLabel.Text = user.GetOrder().EndDate;
             }
         }
-
         public Car ChosenItem { get => chosenItem; set => chosenItem = value; }
         public CarSharingService CarSharingService { get => carSharingService; set => carSharingService = value; }
-        public IAuthorizedUser User { get => user; set => user = value; }
+        public AuthorizedUser User { get => user; set => user = value; }
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
         }
-
         public void ShowItem(Car item)
         {
-            image.Image = item.Image;
+        //    image.Image = item.Image;
             brandLabel.Text = item.Brand;
             modelLabel.Text = item.Model;
             commentLabel.Text = item.Comment;
             pricaLabel.Text = item.Price;
         }
-
         public void SetChosenItem(Car item)
         {
             ChosenItem = item;
         }
-
         private void materialButton1_Click(object sender, EventArgs e)
         {
-
             updateUi setMaxWidth = new updateUi(MaxListWidth);
             updateUi reloadUI = new updateUi(reloadList);
             OrderWizard orderWizard = new OrderWizard(carSharingService, chosenItem, user, MaxListWidth, reloadList);
             orderWizard.Show();
         }
-
         public void MaxListWidth()
         {
             carList.Width = 1050;
             ItemView.Visible = false;
         }
-
         public void MinListWidth()
         {
             carList.Width = 700;
             ItemView.Visible = true;
         }
-
         private void materialMultiLineTextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void orderCard_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
         private void orderReturn_Click(object sender, EventArgs e)
         {
             carSharingService.AddCar(user.GetOrder().Car);

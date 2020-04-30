@@ -28,7 +28,7 @@ namespace netFrameworkProject.UI.Custom
         }
         public void setFields()
         {
-            orderImage.Image = order.Car.Image;
+         //   orderImage.Image = order.Car.Image;
             orderBrandLabel.Text = order.Car.Brand;
             orderModelLabel.Text = order.Car.Model;
             orderPriceLabel.Text = order.Car.Price;
@@ -57,31 +57,28 @@ namespace netFrameworkProject.UI.Custom
 
         private void declineButton_Click(object sender, EventArgs e)
         {
-            carSharingService.DeleteOrder(order.Id);
-            carSharingService.AddCar(order.Car);
-            carSharingService.Users[order.UserId].SetOrder(null);
-
-            UserRepository.writeFile(carSharingService.Users);
-            CarRepository.writeFile(carSharingService.Cars);
-            OrderRepository.writeFile(carSharingService.Orders);
+            ClientUser user =(ClientUser)UserRepository.GetUserById(order.UserId);
+            CarRepository.GetCar(order.Car.Id);
+            user.SetOrder(null);
+            order.Active = false;
+            OrderRepository.UpdateOrder( order);
+            UserRepository.UpdateUser(user);
             reloadOrderList();
         }
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-            carSharingService.Users[order.UserId].SetOrder(order);
-            UserRepository.writeFile(carSharingService.Users);
-            CarRepository.writeFile(carSharingService.Cars);
-            OrderRepository.writeFile(carSharingService.Orders);
-            carSharingService.DeleteOrder(order.Id);
+            AuthorizedUser user = UserRepository.GetUserById(order.UserId);
+            user.SetOrder(order);
+            order.Active = false;
+            UserRepository.UpdateUser(user);
+            OrderRepository.UpdateOrder(order);
             reloadOrderList();
         }
         public void reloadOrderList()
         {
             orderList.Controls.Clear();
-            List<OrderItem> orderItems = new List<OrderItem>();
-            CarSharingService.Orders.ToList().ForEach(item => orderItems.Add(new OrderItem(carSharingService, item.Value, orderList)));
-            orderList.Controls.AddRange(orderItems.ToArray());
+            orderList.Controls.AddRange(OrderRepository.GetActiveOrders().Select(item => new OrderItem(carSharingService, item, orderList)).ToArray());
         }
 
     }

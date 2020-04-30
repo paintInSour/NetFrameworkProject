@@ -27,7 +27,7 @@ namespace netFrameworkProject.UI.Custom
             InitializeComponent();
             Service = service;
             Item = item;
-            image.Image = item.Image;
+           // image.Image = item.Image;
             brandLabel.Text = item.Brand;
             modelLabel.Text = item.Model;
             priceLabel.Text = item.Price;

@@ -7,35 +7,61 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using netFrameworkProject.DB;
+using AppContext = netFrameworkProject.DB.AppContext;
+using System.Diagnostics;
 
 namespace netFrameworkProject.Engine.Repository
 {
     public class OrderRepository
     {
-        private static string filename = "orderList.txt";
-
-
-        public static void writeFile(Dictionary<string, Order> carList)
+        public static Order GetOrder(int id)
         {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Write);
-            formatter.Serialize(stream, carList);
-            stream.Close();
-        }
-        public static Dictionary<string, Order> readFile()
-        {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.Read);
-            try
+            using (AppContext ctx = new AppContext())
             {
-                Dictionary<string, Order> list = (Dictionary<string, Order>)formatter.Deserialize(stream);
-                stream.Close();
-                return list;
+                return ctx.orders.Where(item => item.Id == id).First();
             }
-            catch
+        }
+        public static void SaveOrder(Order order)
+        {
+            using (AppContext ctx = new AppContext())
             {
-                stream.Close();
-                return new Dictionary<string, Order>();
+                ctx.cars.Attach(order.Car);
+                ctx.orders.Add(order);
+                ctx.SaveChanges();
+            }
+        }
+        public static void UpdateOrder(Order newOrder)
+        {
+            using (AppContext ctx = new AppContext())
+            {
+                ctx.cars.Attach(newOrder.Car);
+                var order = ctx.orders.Where(item => item.Id == newOrder.Id).First();
+                order = newOrder;
+                ctx.SaveChanges();
+            }
+        }
+        public static void DeleteOrder(Order order)
+        {
+            using (AppContext ctx = new AppContext())
+            {
+                ctx.orders.Remove(order);
+                ctx.SaveChanges();
+            }
+        }
+        public static List<Order> GetActiveOrders()
+        {
+            using (AppContext ctx = new AppContext())
+            {
+                return ctx.orders.Include("Car").Where(item => item.Active).ToList();
+            }
+        }
+
+        public static List<Order> GetAllOrders()
+        {
+            using (AppContext ctx = new AppContext())
+            {
+                return ctx.orders.ToList();
             }
         }
     }

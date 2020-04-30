@@ -18,29 +18,30 @@ namespace netFrameworkProject.UI.Custom.Admin
     {
         private Car chosenItem;
         private CarSharingService carSharingService;
-        private IAuthorizedUser user;
+        private AuthorizedUser user;
         public AdminUI()
         {
             InitializeComponent();
 
         }
-        public AdminUI(CarSharingService carSharing, IAuthorizedUser user)
+        public AdminUI(CarSharingService carSharing, AuthorizedUser user)
         {
             InitializeComponent();
             carSharingService = carSharing;
-            List<ListItem> list = new List<ListItem>();
-            carSharingService.Cars.ToList().ForEach(item => list.Add(new ListItem(this, item.Value)));
-            ItemList.Controls.AddRange(list.ToArray());
             User = user;
-
-            List<OrderItem> orderItems = new List<OrderItem>();
-            CarSharingService.Orders.ToList().ForEach(item => orderItems.Add(new OrderItem(carSharingService, item.Value, orderList)));
-            orderList.Controls.AddRange(orderItems.ToArray());
+            try
+            {
+                ItemList.Controls.AddRange(CarRepository.GetActiveCars().Select(item => new ListItem(this, item)).ToArray());
+                orderList.Controls.AddRange(OrderRepository.GetActiveOrders().Select(item => new OrderItem(carSharingService, item, orderList)).ToArray());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("cant display");
+            }
         }
-
         public Car ChosenItem { get => chosenItem; set => chosenItem = value; }
         public CarSharingService CarSharingService { get => carSharingService; set => carSharingService = value; }
-        public IAuthorizedUser User { get => user; set => user = value; }
+        public AuthorizedUser User { get => user; set => user = value; }
 
         public void MaxListWidth()
         {
@@ -62,7 +63,7 @@ namespace netFrameworkProject.UI.Custom.Admin
 
         public void ShowItem(Car item)
         {
-            image.Image = item.Image;
+           // image.Image = item.Image;
             brandTextBox.Text = item.Brand;
             modelTextBox.Text = item.Model;
             commentTextBox.Text = item.Comment;
@@ -75,14 +76,14 @@ namespace netFrameworkProject.UI.Custom.Admin
                 createNewCar();
             else
                 editCar();
+            CarRepository.SaveCar(chosenItem);
             ReloadList();
             MaxListWidth();
-            CarRepository.writeFile(CarSharingService.Cars);
         }
 
         public void createNewCar()
         {
-            carSharingService.AddCar(new Car(brandTextBox.Text, modelTextBox.Text, commentTextBox.Text, priceTextBox.Text));
+            chosenItem = new Car(brandTextBox.Text, modelTextBox.Text, commentTextBox.Text, priceTextBox.Text);
         }
         public void editCar()
         {
@@ -90,13 +91,10 @@ namespace netFrameworkProject.UI.Custom.Admin
             chosenItem.Model = modelTextBox.Text;
             chosenItem.Comment = commentTextBox.Text;
             chosenItem.Price = priceTextBox.Text;
-            CarSharingService.AddCar(chosenItem);
         }
-
         private void materialButton2_Click(object sender, EventArgs e)
         {
-            if (chosenItem != null)
-                carSharingService.DeleteCar(chosenItem.Id);
+            carSharingService.DeleteCar(chosenItem);
             ReloadList();
             MaxListWidth();
         }
@@ -109,9 +107,7 @@ namespace netFrameworkProject.UI.Custom.Admin
         {
             try
             {
-                List<ListItem> list = new List<ListItem>();
-                carSharingService.Cars.ToList().ForEach(item => list.Add(new ListItem(this, item.Value)));
-                return list;
+                return CarRepository.GetAllCars().Select(item => new ListItem(this, item)).ToList();
             }
             catch
             {
@@ -125,7 +121,6 @@ namespace netFrameworkProject.UI.Custom.Admin
             addButton.Text = "add";
             chosenItem = null;
         }
-
         private void carList_Click(object sender, EventArgs e)
         {
 

@@ -332,6 +332,7 @@
             // 
             // orderList
             // 
+            this.orderList.AutoScroll = true;
             this.orderList.Location = new System.Drawing.Point(8, 6);
             this.orderList.Name = "orderList";
             this.orderList.Size = new System.Drawing.Size(1078, 576);

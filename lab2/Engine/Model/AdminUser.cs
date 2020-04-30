@@ -6,39 +6,19 @@ using System.Threading.Tasks;
 
 namespace netFrameworkProject.Engine.Model
 {
-    [Serializable]
-    public sealed class AdminUser : IAuthorizedUser
+    public sealed class AdminUser :AuthorizedUser
     {
-        public AdminUser()
+        public AdminUser(string login, string pass) : base(login, pass)
         {
-        }
 
-        public string GetId()
-        {
-            throw new NotImplementedException();
         }
-
-        public string GetLogin()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Order GetOrder()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetPassword()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsAdmin()
+        public AdminUser() { }
+        public override bool IsAdmin()
         {
             return true;
         }
 
-        public void SetOrder(Order order)
+        public override void SetOrder(Order order)
         {
             throw new NotImplementedException();
         }

@@ -6,48 +6,17 @@ using System.Threading.Tasks;
 
 namespace netFrameworkProject.Engine.Model
 {
-    [Serializable]
-    public sealed class ClientUser : AuthoerizedUser, IAuthorizedUser
+    public sealed class ClientUser : AuthorizedUser
     {
-        private string id;
         private Order order;
 
         public Order Order { get => order; set => order = value; }
-        public string Id { get => id; set => id = value; }
-
-        public ClientUser(string login, string pass, string id) : base(login, pass, id)
+        public ClientUser(string login, string pass) : base(login, pass)
         {
             Order = null;
         }
 
-        public Order GetOrder()
-        {
-            return Order;
-        }
-
-        public bool IsAdmin()
-        {
-            return false;
-        }
-
-        public void SetOrder(Order order)
-        {
-            Order = order;
-        }
-
-        public string GetId()
-        {
-            return userId;
-        }
-
-        public string GetLogin()
-        {
-            return login;
-        }
-        public string GetPassword()
-        {
-            return password;
-        }
+        public ClientUser() { }
         new public void AbsolutelyUselessMethod()
         {
             Console.WriteLine("executing absolutely useless method created with new");
@@ -56,5 +25,21 @@ namespace netFrameworkProject.Engine.Model
         {
             Console.WriteLine("executing overrided absolutely useless method");
         }
+
+        public override bool IsAdmin()
+        {
+            return false;
+        }
+
+        public override Order GetOrder()
+        {
+            return Order;
+        }
+
+        public override void SetOrder(Order order)
+        {
+            Order = order;
+        }
+
     }
 }
