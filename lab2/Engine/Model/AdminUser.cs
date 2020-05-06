@@ -17,10 +17,5 @@ namespace netFrameworkProject.Engine.Model
         {
             return true;
         }
-
-        public override void SetOrder(Order order)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

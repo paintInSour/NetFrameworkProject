@@ -38,7 +38,6 @@ namespace netFrameworkProject.Engine.Model
             Console.WriteLine("executing another absolutely useless method");
         }
         public virtual bool IsAdmin() { return false; }
-        public virtual Order GetOrder() { return null; }
-        public virtual void SetOrder(Order order) { }
+
     }
 }

@@ -8,7 +8,6 @@ namespace netFrameworkProject.Engine.Model
 {
     public sealed class ClientUser : AuthorizedUser
     {
-
         public ClientUser(string login, string pass) : base(login, pass)
         {
         }
@@ -26,15 +25,6 @@ namespace netFrameworkProject.Engine.Model
         public override bool IsAdmin()
         {
             return false;
-        }
-
-        public override Order GetOrder()
-        {
-            return null;
-        }
-
-        public override void SetOrder(Order order)
-        {
         }
 
     }

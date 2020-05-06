@@ -59,7 +59,7 @@ namespace netFrameworkProject.UI.Custom
         {
           ClientUser user =(ClientUser)UserRepository.GetUserByUserId(order.UserId);
             CarRepository.GetCar(order.Car.Id);
-            user.SetOrder(null);
+            user.Order = null;
             order.Active = false;
             OrderRepository.UpdateOrder(order);
             UserRepository.UpdateUser(user);

@@ -63,7 +63,7 @@ namespace netFrameworkProject
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
     }
 }

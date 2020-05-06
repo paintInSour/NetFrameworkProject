@@ -36,7 +36,7 @@ namespace netFrameworkProject.UI.Custom.User
         }
         public void setOrderUI(AuthorizedUser user)
         {
-            if (user.Order == null)
+            if (user.Order == null || user.Order.Car.Active == true)
             {
                 noOrderCard.Visible = true;
                 orderCard.Visible = false;
@@ -100,8 +100,10 @@ namespace netFrameworkProject.UI.Custom.User
         }
         private void orderReturn_Click(object sender, EventArgs e)
         {
-            carSharingService.AddCar(user.Order.Car);
-            user.SetOrder(null);
+            user.Order.Car.Active = true;
+            CarRepository.UpdateCar(user.Order.Car);
+            user.Order = null;
+            UserRepository.UpdateUser(user);
             setOrderUI(user);
         }
     }

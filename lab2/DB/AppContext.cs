@@ -19,11 +19,11 @@ namespace netFrameworkProject.DB
         public DbSet<Car> cars { get; set; }
         public DbSet<Order> orders { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<AuthorizedUser>().HasOptional(b => b.Order);
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<AuthorizedUser>().HasOptional(b => b.GetOrder());
 
-            base.OnModelCreating(modelBuilder);
-        }
+        //    base.OnModelCreating(modelBuilder);
+        //}
     }
 }

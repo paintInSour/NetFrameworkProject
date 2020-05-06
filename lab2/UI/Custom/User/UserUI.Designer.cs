@@ -288,12 +288,12 @@
             this.noOrderCard.Controls.Add(this.noOrder);
             this.noOrderCard.Depth = 0;
             this.noOrderCard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.noOrderCard.Location = new System.Drawing.Point(46, 48);
+            this.noOrderCard.Location = new System.Drawing.Point(48, 48);
             this.noOrderCard.Margin = new System.Windows.Forms.Padding(14);
             this.noOrderCard.MouseState = MaterialSkin.MouseState.HOVER;
             this.noOrderCard.Name = "noOrderCard";
             this.noOrderCard.Padding = new System.Windows.Forms.Padding(14);
-            this.noOrderCard.Size = new System.Drawing.Size(1003, 477);
+            this.noOrderCard.Size = new System.Drawing.Size(1001, 477);
             this.noOrderCard.TabIndex = 4;
             // 
             // noOrder

@@ -45,12 +45,13 @@ namespace netFrameworkProject.Engine.Repository
                 return ctx.cars.ToList();
             }
         }
-        public static void UpdateCar(int id, Car newCar)
+        public static void UpdateCar( Car newCar)
         {
             using(AppContext ctx = new AppContext())
             {
-                var car = ctx.cars.Where(item => item.Id == id).First();
-                ctx.Entry(car).CurrentValues.SetValues(newCar);
+                //var car = ctx.cars.Where(item => item.Id == newCar.Id).First();
+                //car = newCar;
+                ctx.Entry(newCar).State = System.Data.Entity.EntityState.Modified;
                 ctx.SaveChanges();
             }
         }

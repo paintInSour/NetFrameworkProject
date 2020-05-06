@@ -21,25 +21,26 @@ namespace netFrameworkProject.UI
             try
             {
                 authorizedUser = UserRepository.GetUser(logingTextBox.Text, passwordTextBox.Text);
-                if (authorizedUser == null)
-                    UserRepository.SaveUser(new ClientUser(logingTextBox.Text, passwordTextBox.Text));
                 Form1 mainForm = new Form1(authorizedUser, CarService);
+                this.Hide();
                 mainForm.Show();
             }
             catch (Exception)
             {
-                MessageBox.Show("Cannot login. Registrated this user");
-
-                //if (user.Checked)
-                //    UserRepository.SaveUser(new ClientUser(logingTextBox.Text, passwordTextBox.Text, BitConverter.ToInt32(Guid.NewGuid().ToByteArray(), 0)));
-
-                //  UserRepository.SaveUser(new AdminUser(logingTextBox.Text, passwordTextBox.Text, BitConverter.ToInt32(Guid.NewGuid().ToByteArray(), 0)));
+                MessageBox.Show("Cannot login.");
             }
 
         }
 
         private void AuthorizationForm_Load(object sender, EventArgs e)
         {
+        }
+
+        private void registerButton_Click(object sender, EventArgs e)
+        {
+            RegistrationForm registration = new RegistrationForm(this);
+            this.Hide();
+            registration.Show();
         }
     }
 }

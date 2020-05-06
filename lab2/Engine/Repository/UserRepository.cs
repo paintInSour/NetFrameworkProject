@@ -1,16 +1,10 @@
 ﻿using netFrameworkProject.Engine.Model;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
-using netFrameworkProject.DB;
-using AppContext = netFrameworkProject.DB.AppContext;
-using System.Diagnostics;
 using System.Data.Entity;
+using System.Diagnostics;
+using System.Linq;
+using AppContext = netFrameworkProject.DB.AppContext;
 
 namespace netFrameworkProject.Engine.Repository
 {
@@ -20,8 +14,10 @@ namespace netFrameworkProject.Engine.Repository
         {
             using (AppContext ctx = new AppContext())
             {
-                return ctx.users.Where(user => user.Login == username && user.Password == password).Include(r => r.Order).Include(r=>r.Order.Car).FirstOrDefault();
-
+                var user = ctx.users.Where(u => u.Login
+                == username && u.Password == password).Include(u => u.Order).Include(u => u.Order.Car)
+                    .FirstOrDefault();
+                return user;
             }
         }
         public static AuthorizedUser GetUserById(int userId)
@@ -33,7 +29,7 @@ namespace netFrameworkProject.Engine.Repository
         }
         public static AuthorizedUser GetUserByUserId(int userId)
         {
-            using(AppContext ctx = new AppContext())
+            using (AppContext ctx = new AppContext())
             {
                 return ctx.users.Where(user => user.UserId == userId).First();
             }
@@ -42,7 +38,14 @@ namespace netFrameworkProject.Engine.Repository
         {
             using (AppContext ctx = new AppContext())
             {
-                ctx.users.Add(user);
+                if (ctx.users.Where(u => u.Login == user.Login && u.Password == u.Password).FirstOrDefault() == null)
+                {
+                    ctx.users.Add(user);
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Cant register");
+                }
                 ctx.SaveChanges();
             }
         }
@@ -51,14 +54,22 @@ namespace netFrameworkProject.Engine.Repository
             using (AppContext ctx = new AppContext())
             {
                 var entity = ctx.users.Find(newUser.Id);
-                entity.Order = ctx.orders.Find(newUser.Order.Id);
+                entity.Order = newUser.Order;
+                try
+                {
+                    entity.Order = ctx.orders.Find(newUser.Order.Id);
+                }
+                catch (Exception)
+                {
+                    Debug.WriteLine("order is null");
+                }
                 Debug.WriteLine(ctx.Entry(entity).State);
                 ctx.SaveChanges();
             }
         }
-        public static AuthorizedUser GetAdminUser(string login,string password)
+        public static AuthorizedUser GetAdminUser(string login, string password)
         {
-            using(AppContext ctx = new AppContext())
+            using (AppContext ctx = new AppContext())
             {
                 return ctx.admins.Where(item => item.Login == login && item.Password == password).FirstOrDefault(null);
             }

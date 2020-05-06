@@ -38,7 +38,7 @@ namespace netFrameworkProject.UI
         {
             itemToOrder.Active = false;
             Debug.WriteLine("item to order id : " + itemToOrder.Id);
-            CarRepository.UpdateCar(itemToOrder.Id, itemToOrder);
+            CarRepository.UpdateCar(itemToOrder);
             Order userOrder = new Order(itemToOrder, authorizedUser.UserId, userIdTextbox.Text, startDatePicker.Text, endDatePicker.Text);
             CarSharingService.AddOrder(userOrder);
 
