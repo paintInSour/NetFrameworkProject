@@ -14,11 +14,13 @@ namespace netFrameworkProject.Engine.Model
         private string login;
         private string password;
         private int userId;
+        private Order order;
 
         public string Login { get => login; set => login = value; }
         public string Password { get => password; set => password = value; }
         public int UserId { get => userId; set => userId = value; }
         public int Id { get => id; set => id = value; }
+        public Order Order { get => order; set => order = value; }
 
         public AuthorizedUser(string login, string password)
         {

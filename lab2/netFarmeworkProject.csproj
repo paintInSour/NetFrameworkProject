@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB\AppContext.cs" />
+    <Compile Include="DB\ModelBuilder.cs" />
     <Compile Include="Engine\Model\AdminUser.cs" />
     <Compile Include="Engine\Model\AuthorizedUser.cs" />
     <Compile Include="Engine\Model\Car.cs" />

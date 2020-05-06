@@ -251,6 +251,7 @@
             // 
             // ItemList
             // 
+            this.ItemList.AutoScroll = true;
             this.ItemList.Controls.Add(this.materialLabel1);
             this.ItemList.Location = new System.Drawing.Point(22, 28);
             this.ItemList.Name = "ItemList";

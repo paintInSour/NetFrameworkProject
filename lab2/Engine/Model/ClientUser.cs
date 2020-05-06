@@ -8,12 +8,9 @@ namespace netFrameworkProject.Engine.Model
 {
     public sealed class ClientUser : AuthorizedUser
     {
-        private Order order;
 
-        public Order Order { get => order; set => order = value; }
         public ClientUser(string login, string pass) : base(login, pass)
         {
-            Order = null;
         }
 
         public ClientUser() { }
@@ -33,12 +30,11 @@ namespace netFrameworkProject.Engine.Model
 
         public override Order GetOrder()
         {
-            return Order;
+            return null;
         }
 
         public override void SetOrder(Order order)
         {
-            Order = order;
         }
 
     }

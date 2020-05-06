@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using netFrameworkProject.DB;
 using AppContext = netFrameworkProject.DB.AppContext;
+using System.Diagnostics;
+using System.Data.Entity;
 
 namespace netFrameworkProject.Engine.Repository
 {
@@ -18,11 +20,18 @@ namespace netFrameworkProject.Engine.Repository
         {
             using (AppContext ctx = new AppContext())
             {
-                return ctx.users.Where(user => user.Login == username && user.Password == password)
-                    .FirstOrDefault();
+                return ctx.users.Where(user => user.Login == username && user.Password == password).Include(r => r.Order).Include(r=>r.Order.Car).FirstOrDefault();
+
             }
         }
         public static AuthorizedUser GetUserById(int userId)
+        {
+            using (AppContext ctx = new AppContext())
+            {
+                return ctx.users.Include("Order").Include("Car").Where(user => user.Id == userId).First();
+            }
+        }
+        public static AuthorizedUser GetUserByUserId(int userId)
         {
             using(AppContext ctx = new AppContext())
             {
@@ -41,10 +50,10 @@ namespace netFrameworkProject.Engine.Repository
         {
             using (AppContext ctx = new AppContext())
             {
-                var user = ctx.users.Where(item => item.Login == newUser.Login).First();
-                user = newUser;
+                var entity = ctx.users.Find(newUser.Id);
+                entity.Order = ctx.orders.Find(newUser.Order.Id);
+                Debug.WriteLine(ctx.Entry(entity).State);
                 ctx.SaveChanges();
-
             }
         }
         public static AuthorizedUser GetAdminUser(string login,string password)
@@ -56,7 +65,7 @@ namespace netFrameworkProject.Engine.Repository
         }
         public static List<AuthorizedUser> GetAllUsers()
         {
-            using(AppContext ctx = new AppContext())
+            using (AppContext ctx = new AppContext())
             {
                 return ctx.users.ToList();
             }

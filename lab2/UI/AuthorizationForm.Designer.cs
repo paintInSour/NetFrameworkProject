@@ -28,44 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.user = new MaterialSkin.Controls.MaterialRadioButton();
-            this.admin = new MaterialSkin.Controls.MaterialRadioButton();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.logingTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.passwordTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.SuspendLayout();
-            // 
-            // user
-            // 
-            this.user.AutoSize = true;
-            this.user.Depth = 0;
-            this.user.Location = new System.Drawing.Point(291, 390);
-            this.user.Margin = new System.Windows.Forms.Padding(0);
-            this.user.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.user.MouseState = MaterialSkin.MouseState.HOVER;
-            this.user.Name = "user";
-            this.user.Ripple = true;
-            this.user.Size = new System.Drawing.Size(65, 37);
-            this.user.TabIndex = 0;
-            this.user.TabStop = true;
-            this.user.Text = "user";
-            this.user.UseVisualStyleBackColor = true;
-            // 
-            // admin
-            // 
-            this.admin.AutoSize = true;
-            this.admin.Depth = 0;
-            this.admin.Location = new System.Drawing.Point(291, 438);
-            this.admin.Margin = new System.Windows.Forms.Padding(0);
-            this.admin.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.admin.MouseState = MaterialSkin.MouseState.HOVER;
-            this.admin.Name = "admin";
-            this.admin.Ripple = true;
-            this.admin.Size = new System.Drawing.Size(80, 37);
-            this.admin.TabIndex = 0;
-            this.admin.TabStop = true;
-            this.admin.Text = "admin";
-            this.admin.UseVisualStyleBackColor = true;
             // 
             // materialButton1
             // 
@@ -104,7 +70,7 @@
             // 
             this.passwordTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.passwordTextBox.Depth = 0;
-            this.passwordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.passwordTextBox.Font = new System.Drawing.Font("Roboto", 12F);
             this.passwordTextBox.Location = new System.Drawing.Point(80, 216);
             this.passwordTextBox.MaxLength = 50;
             this.passwordTextBox.MouseState = MaterialSkin.MouseState.OUT;
@@ -122,8 +88,6 @@
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.logingTextBox);
             this.Controls.Add(this.materialButton1);
-            this.Controls.Add(this.admin);
-            this.Controls.Add(this.user);
             this.Name = "AuthorizationForm";
             this.Text = "AuthorizationForm";
             this.Load += new System.EventHandler(this.AuthorizationForm_Load);
@@ -133,9 +97,6 @@
         }
 
         #endregion
-
-        private MaterialSkin.Controls.MaterialRadioButton user;
-        private MaterialSkin.Controls.MaterialRadioButton admin;
         private MaterialSkin.Controls.MaterialButton materialButton1;
         private MaterialSkin.Controls.MaterialTextBox logingTextBox;
         private MaterialSkin.Controls.MaterialTextBox passwordTextBox;

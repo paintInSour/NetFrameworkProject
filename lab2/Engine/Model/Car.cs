@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace netFrameworkProject.Engine.Model
 {
-    [Serializable]
     public sealed class Car
     {
         [Key]

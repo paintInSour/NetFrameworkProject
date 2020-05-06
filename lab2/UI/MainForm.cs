@@ -34,7 +34,7 @@ namespace netFrameworkProject
         {
             UserUI ui = new UserUI(carSharingService, user);
             ui.Location = new System.Drawing.Point(0, 64);
-            ui.Name = "adminUI1";
+            ui.Name = "userUI1";
             ui.Size = new System.Drawing.Size(1100, 662);
             ui.TabIndex = 1;
             Controls.Add(ui);

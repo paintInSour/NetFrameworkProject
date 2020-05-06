@@ -19,7 +19,7 @@ namespace netFrameworkProject.Engine.Repository
         {
             using (AppContext ctx = new AppContext())
             {
-                return ctx.orders.Where(item => item.Id == id).First();
+                return ctx.orders.Include("Car").Where(item => item.Id == id).First();
             }
         }
         public static void SaveOrder(Order order)
@@ -36,8 +36,7 @@ namespace netFrameworkProject.Engine.Repository
             using (AppContext ctx = new AppContext())
             {
                 ctx.cars.Attach(newOrder.Car);
-                var order = ctx.orders.Where(item => item.Id == newOrder.Id).First();
-                order = newOrder;
+                ctx.Entry(newOrder).State = System.Data.Entity.EntityState.Modified;
                 ctx.SaveChanges();
             }
         }

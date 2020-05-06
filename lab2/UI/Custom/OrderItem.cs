@@ -57,22 +57,22 @@ namespace netFrameworkProject.UI.Custom
 
         private void declineButton_Click(object sender, EventArgs e)
         {
-            ClientUser user =(ClientUser)UserRepository.GetUserById(order.UserId);
+          ClientUser user =(ClientUser)UserRepository.GetUserByUserId(order.UserId);
             CarRepository.GetCar(order.Car.Id);
             user.SetOrder(null);
             order.Active = false;
-            OrderRepository.UpdateOrder( order);
+            OrderRepository.UpdateOrder(order);
             UserRepository.UpdateUser(user);
             reloadOrderList();
         }
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-            AuthorizedUser user = UserRepository.GetUserById(order.UserId);
-            user.SetOrder(order);
+            AuthorizedUser user = UserRepository.GetUserByUserId(order.UserId);
             order.Active = false;
+            user.Order = order;
+            OrderRepository.UpdateOrder(user.Order);
             UserRepository.UpdateUser(user);
-            OrderRepository.UpdateOrder(order);
             reloadOrderList();
         }
         public void reloadOrderList()

@@ -36,7 +36,7 @@ namespace netFrameworkProject.UI.Custom.User
         }
         public void setOrderUI(AuthorizedUser user)
         {
-            if (user.GetOrder() == null)
+            if (user.Order == null)
             {
                 noOrderCard.Visible = true;
                 orderCard.Visible = false;
@@ -46,11 +46,11 @@ namespace netFrameworkProject.UI.Custom.User
                 noOrderCard.Visible = false;
                 orderCard.Visible = true;
           //      orderImage.Image = user.GetOrder().Car.Image;
-                orderBrandLabel.Text = user.GetOrder().Car.Brand;
-                orderModelLabel.Text = user.GetOrder().Car.Model;
-                orderCommentLabel.Text = user.GetOrder().Car.Comment;
-                startDateLabel.Text = user.GetOrder().StartDate;
-                endDateLabel.Text = user.GetOrder().EndDate;
+                orderBrandLabel.Text = user.Order.Car.Brand;
+                orderModelLabel.Text = user.Order.Car.Model;
+                orderCommentLabel.Text = user.Order.Car.Comment;
+                startDateLabel.Text = user.Order.StartDate;
+                endDateLabel.Text = user.Order.EndDate;
             }
         }
         public Car ChosenItem { get => chosenItem; set => chosenItem = value; }
@@ -100,7 +100,7 @@ namespace netFrameworkProject.UI.Custom.User
         }
         private void orderReturn_Click(object sender, EventArgs e)
         {
-            carSharingService.AddCar(user.GetOrder().Car);
+            carSharingService.AddCar(user.Order.Car);
             user.SetOrder(null);
             setOrderUI(user);
         }
