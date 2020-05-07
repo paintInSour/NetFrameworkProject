@@ -34,7 +34,8 @@ namespace netFrameworkProject.Engine.Repository
         {
             using(AppContext ctx = new AppContext())
             {
-                ctx.cars.Remove(car);
+                var c = ctx.cars.Find(car.Id);
+                c.Deleted = true;
                 ctx.SaveChanges();
             }
         }
@@ -45,7 +46,7 @@ namespace netFrameworkProject.Engine.Repository
                 return ctx.cars.ToList();
             }
         }
-        public static void UpdateCar( Car newCar)
+        public static void UpdateCar(Car newCar)
         {
             using(AppContext ctx = new AppContext())
             {
@@ -59,14 +60,14 @@ namespace netFrameworkProject.Engine.Repository
         {
             using(AppContext ctx = new AppContext())
             {
-                return ctx.cars.Where(item => item.Id == id).First();
+                return ctx.cars.Where(item => item.Id == id && item.Deleted == false).First();
             }
         }
         public static List<Car> GetActiveCars()
         {
             using (AppContext ctx = new AppContext())
             {
-                return ctx.cars.Where(item => item.Active).ToList();
+                return ctx.cars.Where(item => item.Active && item.Deleted == false).ToList();
             }
         }
     }

@@ -14,10 +14,10 @@ namespace netFrameworkProject.Engine.Repository
         {
             using (AppContext ctx = new AppContext())
             {
-                var user = ctx.users.Where(u => u.Login
+                return ctx.users.Where(u => u.Login
                 == username && u.Password == password).Include(u => u.Order).Include(u => u.Order.Car)
                     .FirstOrDefault();
-                return user;
+                
             }
         }
         public static AuthorizedUser GetUserById(int userId)
@@ -38,7 +38,7 @@ namespace netFrameworkProject.Engine.Repository
         {
             using (AppContext ctx = new AppContext())
             {
-                if (ctx.users.Where(u => u.Login == user.Login && u.Password == u.Password).FirstOrDefault() == null)
+                if (ctx.users.Where(u => u.Login == user.Login && u.Password == user.Password).FirstOrDefault() == null)
                 {
                     ctx.users.Add(user);
                 }
@@ -54,7 +54,7 @@ namespace netFrameworkProject.Engine.Repository
             using (AppContext ctx = new AppContext())
             {
                 var entity = ctx.users.Find(newUser.Id);
-                entity.Order = newUser.Order;
+             //   entity.Order = newUser.Order;
                 try
                 {
                     entity.Order = ctx.orders.Find(newUser.Order.Id);

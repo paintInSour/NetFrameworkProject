@@ -10,6 +10,7 @@ namespace netFrameworkProject.Engine.Model
     {
         public ClientUser(string login, string pass) : base(login, pass)
         {
+            Order = null;
         }
 
         public ClientUser() { }

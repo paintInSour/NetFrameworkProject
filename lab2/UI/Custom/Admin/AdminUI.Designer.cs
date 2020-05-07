@@ -39,7 +39,6 @@
             this.deleteButton = new MaterialSkin.Controls.MaterialButton();
             this.addButton = new MaterialSkin.Controls.MaterialButton();
             this.commentTextBox = new MaterialSkin.Controls.MaterialMultiLineTextBox();
-            this.image = new System.Windows.Forms.PictureBox();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
@@ -48,12 +47,13 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.orderList = new System.Windows.Forms.FlowLayoutPanel();
+            this.image = new System.Windows.Forms.PictureBox();
             this.materialTabControl1.SuspendLayout();
             this.carList.SuspendLayout();
             this.ItemView.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
             this.ItemList.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
             this.SuspendLayout();
             // 
             // materialTabSelector1
@@ -61,7 +61,7 @@
             this.materialTabSelector1.BaseTabControl = this.materialTabControl1;
             this.materialTabSelector1.Depth = 0;
             this.materialTabSelector1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.materialTabSelector1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialTabSelector1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialTabSelector1.Location = new System.Drawing.Point(0, 0);
             this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabSelector1.Name = "materialTabSelector1";
@@ -144,13 +144,14 @@
             // 
             this.priceTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.priceTextBox.Depth = 0;
-            this.priceTextBox.Font = new System.Drawing.Font("Roboto", 12F);
-            this.priceTextBox.Location = new System.Drawing.Point(98, 395);
+            this.priceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.priceTextBox.Hint = "Price";
+            this.priceTextBox.Location = new System.Drawing.Point(46, 403);
             this.priceTextBox.MaxLength = 50;
             this.priceTextBox.MouseState = MaterialSkin.MouseState.OUT;
             this.priceTextBox.Multiline = false;
             this.priceTextBox.Name = "priceTextBox";
-            this.priceTextBox.Size = new System.Drawing.Size(157, 50);
+            this.priceTextBox.Size = new System.Drawing.Size(207, 50);
             this.priceTextBox.TabIndex = 7;
             this.priceTextBox.Text = "";
             // 
@@ -158,13 +159,14 @@
             // 
             this.modelTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.modelTextBox.Depth = 0;
-            this.modelTextBox.Font = new System.Drawing.Font("Roboto", 12F);
-            this.modelTextBox.Location = new System.Drawing.Point(106, 268);
+            this.modelTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.modelTextBox.Hint = "Model";
+            this.modelTextBox.Location = new System.Drawing.Point(43, 268);
             this.modelTextBox.MaxLength = 50;
             this.modelTextBox.MouseState = MaterialSkin.MouseState.OUT;
             this.modelTextBox.Multiline = false;
             this.modelTextBox.Name = "modelTextBox";
-            this.modelTextBox.Size = new System.Drawing.Size(147, 50);
+            this.modelTextBox.Size = new System.Drawing.Size(210, 50);
             this.modelTextBox.TabIndex = 6;
             this.modelTextBox.Text = "";
             // 
@@ -173,14 +175,15 @@
             this.brandTextBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.brandTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.brandTextBox.Depth = 0;
-            this.brandTextBox.Font = new System.Drawing.Font("Roboto", 12F);
+            this.brandTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.brandTextBox.Hint = "Brand";
             this.brandTextBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.brandTextBox.Location = new System.Drawing.Point(106, 212);
+            this.brandTextBox.Location = new System.Drawing.Point(43, 212);
             this.brandTextBox.MaxLength = 50;
             this.brandTextBox.MouseState = MaterialSkin.MouseState.OUT;
             this.brandTextBox.Multiline = false;
             this.brandTextBox.Name = "brandTextBox";
-            this.brandTextBox.Size = new System.Drawing.Size(149, 50);
+            this.brandTextBox.Size = new System.Drawing.Size(212, 50);
             this.brandTextBox.TabIndex = 5;
             this.brandTextBox.Text = "";
             // 
@@ -226,7 +229,7 @@
             // commentTextBox
             // 
             this.commentTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.commentTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.commentTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.commentTextBox.Depth = 0;
             this.commentTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.commentTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -238,15 +241,6 @@
             this.commentTextBox.Size = new System.Drawing.Size(212, 49);
             this.commentTextBox.TabIndex = 3;
             this.commentTextBox.Text = "";
-            // 
-            // image
-            // 
-            this.image.Location = new System.Drawing.Point(48, 12);
-            this.image.Name = "image";
-            this.image.Size = new System.Drawing.Size(200, 180);
-            this.image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.image.TabIndex = 1;
-            this.image.TabStop = false;
             // 
             // materialLabel2
             // 
@@ -290,7 +284,7 @@
             this.materialLabel6.Depth = 0;
             this.materialLabel6.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel6.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            this.materialLabel6.Location = new System.Drawing.Point(45, 400);
+            this.materialLabel6.Location = new System.Drawing.Point(45, 408);
             this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel6.Name = "materialLabel6";
             this.materialLabel6.Size = new System.Drawing.Size(68, 29);
@@ -338,6 +332,18 @@
             this.orderList.Size = new System.Drawing.Size(1078, 576);
             this.orderList.TabIndex = 0;
             // 
+            // image
+            // 
+            this.image.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.image.Image = global::netFrameworkProject.Properties.Resources.f1_3;
+            this.image.Location = new System.Drawing.Point(48, 12);
+            this.image.Name = "image";
+            this.image.Size = new System.Drawing.Size(200, 180);
+            this.image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.image.TabIndex = 1;
+            this.image.TabStop = false;
+            this.image.Click += new System.EventHandler(this.image_Click);
+            // 
             // AdminUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -351,10 +357,10 @@
             this.carList.PerformLayout();
             this.ItemView.ResumeLayout(false);
             this.ItemView.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.image)).EndInit();
             this.ItemList.ResumeLayout(false);
             this.ItemList.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.image)).EndInit();
             this.ResumeLayout(false);
 
         }

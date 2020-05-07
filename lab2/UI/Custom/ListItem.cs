@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using netFrameworkProject.UI.Custom.IControl;
 using netFrameworkProject.Engine.Model;
+using netFrameworkProject.Engine.Utils;
 
 namespace netFrameworkProject.UI.Custom
 {
     public partial class ListItem : UserControl
     {
+        private CustomImageConverter imageConverter = new CustomImageConverter();
         private Car item;
         public IShowItem Service { get; set; }
         public Car Item { get => item; set => item = value; }
@@ -27,7 +29,7 @@ namespace netFrameworkProject.UI.Custom
             InitializeComponent();
             Service = service;
             Item = item;
-           // image.Image = item.Image;
+            image.Image = imageConverter.byteArrayToImage(item.Image);
             brandLabel.Text = item.Brand;
             modelLabel.Text = item.Model;
             priceLabel.Text = item.Price;
@@ -49,6 +51,13 @@ namespace netFrameworkProject.UI.Custom
         }
 
         private void materialCard1_Click(object sender, EventArgs e)
+        {
+            Service.ShowItem(item);
+            Service.SetChosenItem(item);
+            Service.MinListWidth();
+        }
+
+        private void image_Click(object sender, EventArgs e)
         {
             Service.ShowItem(item);
             Service.SetChosenItem(item);

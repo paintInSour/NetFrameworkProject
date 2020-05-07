@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB\AppContext.cs" />
-    <Compile Include="DB\ModelBuilder.cs" />
     <Compile Include="Engine\Model\AdminUser.cs" />
     <Compile Include="Engine\Model\AuthorizedUser.cs" />
     <Compile Include="Engine\Model\Car.cs" />
@@ -74,6 +73,7 @@
     <Compile Include="Engine\Repository\OrderRepository.cs" />
     <Compile Include="Engine\Repository\UserRepository.cs" />
     <Compile Include="Engine\Service\CarSharingService.cs" />
+    <Compile Include="Engine\Utils\CustomImageConverter.cs" />
     <Compile Include="UI\RegistrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,7 +177,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\car-sharing-1-1177023.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\f1-3.jpg" />
   </ItemGroup>

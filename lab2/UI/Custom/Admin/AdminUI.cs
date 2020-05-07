@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using netFrameworkProject.UI.Custom.IControl;
-using netFrameworkProject.Engine.Model;
-using netFrameworkProject.Engine.Service;
+﻿using netFrameworkProject.Engine.Model;
 using netFrameworkProject.Engine.Repository;
+using netFrameworkProject.Engine.Service;
+using netFrameworkProject.Engine.Utils;
+using netFrameworkProject.UI.Custom.IControl;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace netFrameworkProject.UI.Custom.Admin
 {
@@ -19,6 +17,7 @@ namespace netFrameworkProject.UI.Custom.Admin
         private Car chosenItem;
         private CarSharingService carSharingService;
         private AuthorizedUser user;
+        private CustomImageConverter imageConverter = new CustomImageConverter();
         public AdminUI()
         {
             InitializeComponent();
@@ -58,12 +57,14 @@ namespace netFrameworkProject.UI.Custom.Admin
 
         public void SetChosenItem(Car item)
         {
+            item.Image=imageConverter.imageToByteArray(image.Image);
             chosenItem = item;
+
         }
 
         public void ShowItem(Car item)
         {
-           // image.Image = item.Image;
+            image.Image = imageConverter.byteArrayToImage(item.Image);
             brandTextBox.Text = item.Brand;
             modelTextBox.Text = item.Model;
             commentTextBox.Text = item.Comment;
@@ -73,17 +74,22 @@ namespace netFrameworkProject.UI.Custom.Admin
         private void materialButton1_Click(object sender, EventArgs e)
         {
             if (chosenItem == null)
+            {
                 createNewCar();
+                CarRepository.SaveCar(chosenItem);
+            }
             else
+            {
                 editCar();
-            CarRepository.SaveCar(chosenItem);
+                CarRepository.UpdateCar(chosenItem);
+            }
             ReloadList();
             MaxListWidth();
         }
 
         public void createNewCar()
         {
-            chosenItem = new Car(brandTextBox.Text, modelTextBox.Text, commentTextBox.Text, priceTextBox.Text);
+            chosenItem = new Car(brandTextBox.Text, modelTextBox.Text, commentTextBox.Text, priceTextBox.Text, imageConverter.imageToByteArray(image.Image));
         }
         public void editCar()
         {
@@ -107,7 +113,7 @@ namespace netFrameworkProject.UI.Custom.Admin
         {
             try
             {
-                return CarRepository.GetAllCars().Select(item => new ListItem(this, item)).ToList();
+                return CarRepository.GetActiveCars().Select(item => new ListItem(this, item)).ToList();
             }
             catch
             {
@@ -123,7 +129,17 @@ namespace netFrameworkProject.UI.Custom.Admin
         }
         private void carList_Click(object sender, EventArgs e)
         {
+          
 
+        }
+        private void image_Click(object sender, EventArgs e)
+        {
+              OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                image.Image = new Bitmap(open.FileName);
+            }
         }
     }
 }

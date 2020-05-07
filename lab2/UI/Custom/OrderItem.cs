@@ -10,11 +10,13 @@ using System.Windows.Forms;
 using netFrameworkProject.Engine.Service;
 using netFrameworkProject.Engine.Model;
 using netFrameworkProject.Engine.Repository;
+using netFrameworkProject.Engine.Utils;
 
 namespace netFrameworkProject.UI.Custom
 {
     public partial class OrderItem : UserControl
     {
+        private CustomImageConverter imageConverter = new CustomImageConverter();
         private CarSharingService carSharingService;
         private Order order;
         private FlowLayoutPanel orderList;
@@ -28,7 +30,7 @@ namespace netFrameworkProject.UI.Custom
         }
         public void setFields()
         {
-         //   orderImage.Image = order.Car.Image;
+            orderImage.Image = imageConverter.byteArrayToImage(order.Car.Image);
             orderBrandLabel.Text = order.Car.Brand;
             orderModelLabel.Text = order.Car.Model;
             orderPriceLabel.Text = order.Car.Price;
@@ -81,5 +83,9 @@ namespace netFrameworkProject.UI.Custom
             orderList.Controls.AddRange(OrderRepository.GetActiveOrders().Select(item => new OrderItem(carSharingService, item, orderList)).ToArray());
         }
 
+        private void materialCard1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

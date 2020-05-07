@@ -44,7 +44,8 @@ namespace netFrameworkProject.Engine.Repository
         {
             using (AppContext ctx = new AppContext())
             {
-                ctx.orders.Remove(order);
+                var obj = ctx.orders.Find(order.Id);
+                ctx.orders.Remove(obj);
                 ctx.SaveChanges();
             }
         }

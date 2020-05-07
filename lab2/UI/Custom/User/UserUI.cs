@@ -11,11 +11,13 @@ using netFrameworkProject.Engine.Service;
 using netFrameworkProject.Engine.Model;
 using netFrameworkProject.UI.Custom.IControl;
 using netFrameworkProject.Engine.Repository;
+using netFrameworkProject.Engine.Utils;
 
 namespace netFrameworkProject.UI.Custom.User
 {
     public partial class UserUI : UserControl, IShowItem
     {
+        private CustomImageConverter imageConverter = new CustomImageConverter();
         private Car chosenItem;
         private CarSharingService carSharingService;
         private AuthorizedUser user;
@@ -45,7 +47,7 @@ namespace netFrameworkProject.UI.Custom.User
             {
                 noOrderCard.Visible = false;
                 orderCard.Visible = true;
-          //      orderImage.Image = user.GetOrder().Car.Image;
+                orderImage.Image = imageConverter.byteArrayToImage(user.Order.Car.Image);
                 orderBrandLabel.Text = user.Order.Car.Brand;
                 orderModelLabel.Text = user.Order.Car.Model;
                 orderCommentLabel.Text = user.Order.Car.Comment;
@@ -63,7 +65,7 @@ namespace netFrameworkProject.UI.Custom.User
         }
         public void ShowItem(Car item)
         {
-        //    image.Image = item.Image;
+            image.Image = imageConverter.byteArrayToImage(item.Image);
             brandLabel.Text = item.Brand;
             modelLabel.Text = item.Model;
             commentLabel.Text = item.Comment;
@@ -75,10 +77,18 @@ namespace netFrameworkProject.UI.Custom.User
         }
         private void materialButton1_Click(object sender, EventArgs e)
         {
-            updateUi setMaxWidth = new updateUi(MaxListWidth);
-            updateUi reloadUI = new updateUi(reloadList);
-            OrderWizard orderWizard = new OrderWizard(carSharingService, chosenItem, user, MaxListWidth, reloadList);
-            orderWizard.Show();
+
+            if (user.Order == null || user.Order.Active == false)
+            {
+                updateUi setMaxWidth = new updateUi(MaxListWidth);
+                updateUi reloadUI = new updateUi(reloadList);
+                OrderWizard orderWizard = new OrderWizard(carSharingService, chosenItem, user, MaxListWidth, reloadList);
+                orderWizard.Show();
+            }
+            else
+            {
+                MessageBox.Show("You can not order a car");
+            }
         }
         public void MaxListWidth()
         {
@@ -102,6 +112,7 @@ namespace netFrameworkProject.UI.Custom.User
         {
             user.Order.Car.Active = true;
             CarRepository.UpdateCar(user.Order.Car);
+            OrderRepository.DeleteOrder(user.Order);
             user.Order = null;
             UserRepository.UpdateUser(user);
             setOrderUI(user);

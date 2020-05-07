@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderWizard));
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.userIdTextbox = new MaterialSkin.Controls.MaterialTextBox();
             this.startDatePicker = new System.Windows.Forms.DateTimePicker();
@@ -138,7 +139,9 @@
             this.Controls.Add(this.startDatePicker);
             this.Controls.Add(this.userIdTextbox);
             this.Controls.Add(this.materialLabel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OrderWizard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OrderWizard";
             this.ResumeLayout(false);
             this.PerformLayout();

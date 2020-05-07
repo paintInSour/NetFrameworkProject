@@ -12,7 +12,6 @@ namespace netFrameworkProject.DB
     public class AppContext : DbContext
     {
         public AppContext() : base("DbConnection") { }
-
         public DbSet<ClientUser> clients { get; set; }
         public DbSet<AuthorizedUser> users { get; set; }
         public DbSet<AdminUser> admins { get; set; }
